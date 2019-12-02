@@ -3,10 +3,12 @@ package my.edu.fsktm.um.finalproject.LoginPage;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -17,6 +19,8 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
+import my.edu.fsktm.um.finalproject.ForumTitle.ForumTitle;
+import my.edu.fsktm.um.finalproject.MainActivity;
 import my.edu.fsktm.um.finalproject.R;
 
 public class EmailPassActivity extends BaseActivity implements View.OnClickListener {
@@ -27,6 +31,7 @@ public class EmailPassActivity extends BaseActivity implements View.OnClickListe
     private TextView mDetailTextView;
     private EditText mEmailField;
     private EditText mPasswordField;
+    private Button button;
 
     // [START declare_auth]
     private FirebaseAuth mAuth;
@@ -48,7 +53,7 @@ public class EmailPassActivity extends BaseActivity implements View.OnClickListe
         findViewById(R.id.emailCreateAccountButton).setOnClickListener(this);
         findViewById(R.id.signOutButton).setOnClickListener(this);
         findViewById(R.id.verifyEmailButton).setOnClickListener(this);
-
+        findViewById(R.id.bTest).setOnClickListener(this);
         // [START initialize_auth]
         // Initialize Firebase Auth
         mAuth = FirebaseAuth.getInstance();
@@ -227,6 +232,9 @@ public class EmailPassActivity extends BaseActivity implements View.OnClickListe
             signOut();
         } else if (i == R.id.verifyEmailButton) {
             sendEmailVerification();
+        } else if (i == R.id.bTest){
+            Intent intent = new Intent (this, ForumTitle.class);
+            startActivity(intent);
         }
     }
 }

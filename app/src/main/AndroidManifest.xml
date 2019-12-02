@@ -18,7 +18,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".MessagesActivity"></activity>
+        <activity android:name=".ForumTitle.ForumTitle"></activity>
     </application>
 
 </manifest>
