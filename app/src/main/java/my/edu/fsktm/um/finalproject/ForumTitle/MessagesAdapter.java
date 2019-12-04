@@ -24,7 +24,7 @@ public class MessagesAdapter extends FirestoreRecyclerAdapter<Messages, Messages
     protected void onBindViewHolder(MessagesHolder holder, int position,  Messages model) {
         holder.textViewMessages.setText(model.getMessages());
         holder.textViewUser.setText(model.getUser());
-        holder.timeStamp.setText(model.getTimePosted().toString());
+        holder.timeStamp.setText(model.getTimePosted().toDate().toString());
     }
 
     @NonNull

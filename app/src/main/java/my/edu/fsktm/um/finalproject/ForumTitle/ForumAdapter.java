@@ -28,7 +28,8 @@ public class ForumAdapter extends FirestoreRecyclerAdapter<Forum,ForumAdapter.Fo
     public void onBindViewHolder(ForumHolder forumHolder, int i, Forum forum) {
         forumHolder.textViewTitle.setText(forum.getTitle());
         forumHolder.textViewDescription.setText(forum.getDescription());
-        forumHolder.timeStamp.setText(forum.getDatePosted().toString());
+        forumHolder.timeStamp.setText(forum.getDatePosted().toDate().toString());
+
     }
 
     @NonNull
