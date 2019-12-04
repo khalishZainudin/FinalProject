@@ -11,12 +11,14 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
+import com.google.firebase.firestore.DocumentSnapshot;
 
 import java.util.Date;
 
 import my.edu.fsktm.um.finalproject.R;
 
 public class ForumAdapter extends FirestoreRecyclerAdapter<Forum,ForumAdapter.ForumHolder> {
+    private OnItemClickListener listener;
 
     public ForumAdapter(FirestoreRecyclerOptions<Forum> options) {
         super(options);
@@ -41,10 +43,27 @@ public class ForumAdapter extends FirestoreRecyclerAdapter<Forum,ForumAdapter.Fo
         TextView timeStamp;
         public ForumHolder(View itemView) {
             super(itemView);
-            textViewTitle = itemView.findViewById(R.id.title);
-            textViewDescription = itemView.findViewById(R.id.description);
-            timeStamp = itemView.findViewById(R.id.timestamp);
+            textViewTitle = itemView.findViewById(R.id.tvTitle);
+            textViewDescription = itemView.findViewById(R.id.tvDescription);
+            timeStamp = itemView.findViewById(R.id.tvTimestamp);
+
+            textViewTitle.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    int position = getAdapterPosition();
+                    // NO_POSITION to prevent app crash when click -1 index
+                    if(position != RecyclerView.NO_POSITION && listener !=null ){
+                        listener.onItemClick(getSnapshots().getSnapshot(position),position);
+                    }
+                }
+            });
         }
+    }
+    public interface OnItemClickListener{
+        void onItemClick(DocumentSnapshot documentSnapshot, int position);
+    }
+    public void setOnItemClickListener(OnItemClickListener listener){
+        this.listener = listener;
     }
     @Override
     public int getItemCount() {

@@ -5,15 +5,25 @@ import com.google.firebase.Timestamp;
 public class Forum {
     private String Title;
     private String Description;
+    private String User;
     private com.google.firebase.Timestamp DatePosted;
 
     public Forum() {
     }
 
-    public Forum(String title, String description, Timestamp datePosted) {
+    public Forum(String title, String description, Timestamp datePosted,String user) {
         Title = title;
         Description = description;
         DatePosted = datePosted;
+        User = user;
+    }
+
+    public String getUser() {
+        return User;
+    }
+
+    public void setUser(String user) {
+        User = user;
     }
 
     public String getTitle() {
