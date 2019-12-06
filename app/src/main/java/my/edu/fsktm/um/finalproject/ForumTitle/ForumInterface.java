@@ -13,6 +13,8 @@ import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
 
+import org.w3c.dom.Text;
+
 import my.edu.fsktm.um.finalproject.R;
 
 public class ForumInterface extends AppCompatActivity {
@@ -35,6 +37,7 @@ public class ForumInterface extends AppCompatActivity {
         String forum_id = extras.getString("FORUM_ID");
         String forum_description = extras.getString("DESCRIPTION");
         String forum_username = extras.getString("USER");
+        String forum_time_posted = extras.getString("TIME_POSTED");
 
         db = FirebaseFirestore.getInstance();
         forumInformation = db.collection(forum_type).document(forum_id).collection(forum_title);
@@ -43,10 +46,12 @@ public class ForumInterface extends AppCompatActivity {
         TextView description = (TextView)findViewById(R.id.tvForumDesc);
         TextView test = (TextView)findViewById(R.id.tvForumTitle);
         TextView username = (TextView)findViewById(R.id.tvForumUser);
+        TextView timePosted = (TextView)findViewById(R.id.tvTimePosted);
 
         test.setText(forum_title);
         description.setText(forum_description);
         username.setText(forum_username);
+        timePosted.setText(forum_time_posted);
 
         setUpRecyclerView();
     }

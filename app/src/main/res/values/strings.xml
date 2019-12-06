@@ -30,4 +30,10 @@
 
     <string name="firebase_status_fmt">PC Helper User: %s</string>
 
+    <string-array name="Type">
+        <item>Hardware</item>
+        <item>Review</item>
+        <item>Technical</item>
+    </string-array>
+
 </resources>

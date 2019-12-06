@@ -1,5 +1,6 @@
 package my.edu.fsktm.um.finalproject.ForumTitle;
 
+import android.icu.text.SimpleDateFormat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,6 +15,8 @@ import com.firebase.ui.firestore.FirestoreRecyclerOptions;
 
 import org.w3c.dom.Text;
 
+import java.util.Date;
+
 import my.edu.fsktm.um.finalproject.R;
 
 public class MessagesAdapter extends FirestoreRecyclerAdapter<Messages, MessagesAdapter.MessagesHolder> {
@@ -24,7 +27,10 @@ public class MessagesAdapter extends FirestoreRecyclerAdapter<Messages, Messages
     protected void onBindViewHolder(MessagesHolder holder, int position,  Messages model) {
         holder.textViewMessages.setText(model.getMessages());
         holder.textViewUser.setText(model.getUser());
-        holder.timeStamp.setText(model.getTimePosted().toDate().toString());
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("MMMM dd yyyy, hh:mm a");
+        String testtimeStamp = (model.getTimePosted().toDate().toString());
+        String testtimeStamp2 = simpleDateFormat.format(new Date(testtimeStamp));
+        holder.timeStamp.setText(testtimeStamp2);
     }
 
     @NonNull

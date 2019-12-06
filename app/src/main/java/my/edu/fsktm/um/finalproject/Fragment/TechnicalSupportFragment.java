@@ -2,6 +2,7 @@ package my.edu.fsktm.um.finalproject.Fragment;
 
 
 import android.content.Intent;
+import android.icu.text.SimpleDateFormat;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -18,6 +19,8 @@ import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
+
+import java.util.Date;
 
 import my.edu.fsktm.um.finalproject.ForumTitle.Forum;
 import my.edu.fsktm.um.finalproject.ForumTitle.ForumAdapter;
@@ -54,6 +57,9 @@ public class TechnicalSupportFragment extends Fragment {
                 String title = forum.getTitle();
                 String description = forum.getDescription();
                 String username = forum.getUser();
+                SimpleDateFormat simpleDateFormat = new SimpleDateFormat("MMMM dd yyyy, hh:mm a");
+                String uncovertedTimeStamp = (forum.getDatePosted().toDate().toString());
+                String ConvertedTimeStamp = simpleDateFormat.format(new Date(uncovertedTimeStamp));
                 String id = documentSnapshot.getId();
                 Intent intent = new Intent(getActivity(), ForumInterface.class);
                 Bundle extras = new Bundle();
@@ -62,6 +68,7 @@ public class TechnicalSupportFragment extends Fragment {
                 extras.putString("TITLE",title);
                 extras.putString("DESCRIPTION",description);
                 extras.putString("USER",username);
+                extras.putString("TIME_POSTED",ConvertedTimeStamp);
                 intent.putExtras(extras);
                 startActivity(intent);
             }

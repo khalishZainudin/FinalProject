@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageButton;
@@ -19,6 +20,8 @@ import android.widget.TextView;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.firebase.database.core.Context;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
@@ -34,14 +37,18 @@ import my.edu.fsktm.um.finalproject.Fragment.TechnicalSupportFragment;
 import my.edu.fsktm.um.finalproject.R;
 
 public class ForumTitle extends AppCompatActivity {
-    private FirebaseFirestore db = FirebaseFirestore.getInstance();
 
+    private FirebaseFirestore db = FirebaseFirestore.getInstance();
+    ForumTitle context;
 
     ImageButton IVReview,IVTechnical,IVHardware;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_forum_title);
+        FloatingActionButton fabadd = (FloatingActionButton) findViewById(R.id.fabAdd);
+
+        context = this;
 
         View.OnClickListener listener = new View.OnClickListener() {
             @Override
@@ -69,6 +76,15 @@ public class ForumTitle extends AppCompatActivity {
         IVReview.setOnClickListener(listener);
         IVTechnical.setOnClickListener(listener);
         IVHardware.setOnClickListener(listener);
+
+        fabadd.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(ForumTitle.this,AddForum.class);
+                startActivity(intent);
+            }
+        });
     }
+
 }
 

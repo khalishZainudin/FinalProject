@@ -7,10 +7,14 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.emoji.bundled.BundledEmojiCompatConfig;
+import androidx.emoji.text.EmojiCompat;
+import androidx.emoji.widget.EmojiTextView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
+import com.google.firebase.database.core.Context;
 import com.google.firebase.firestore.DocumentSnapshot;
 
 import java.util.Date;
@@ -18,6 +22,8 @@ import java.util.Date;
 import my.edu.fsktm.um.finalproject.R;
 
 public class ForumAdapter extends FirestoreRecyclerAdapter<Forum,ForumAdapter.ForumHolder> {
+
+
     private OnItemClickListener listener;
 
     public ForumAdapter(FirestoreRecyclerOptions<Forum> options) {
@@ -28,7 +34,11 @@ public class ForumAdapter extends FirestoreRecyclerAdapter<Forum,ForumAdapter.Fo
     public void onBindViewHolder(ForumHolder forumHolder, int i, Forum forum) {
         forumHolder.textViewTitle.setText(forum.getTitle());
         forumHolder.textViewDescription.setText(forum.getDescription());
-        forumHolder.timeStamp.setText(forum.getDatePosted().toDate().toString());
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("MMMM dd yyyy, hh:mm a");
+        String uncovertedTimeStamp = (forum.getDatePosted().toDate().toString());
+        String ConvertedTimeStamp = simpleDateFormat.format(new Date(uncovertedTimeStamp));
+
+        forumHolder.timeStamp.setText(ConvertedTimeStamp);
 
     }
 
@@ -36,9 +46,16 @@ public class ForumAdapter extends FirestoreRecyclerAdapter<Forum,ForumAdapter.Fo
     @Override
     public ForumHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         android.view.View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.cardviewforumtitle,parent,false);
+        EmojiCompat.init(new BundledEmojiCompatConfig(v.getContext()));
         return new ForumHolder(v);
+
     }
     class ForumHolder extends RecyclerView.ViewHolder{
+
+        /*EmojiTextView textViewTitle;
+        EmojiTextView textViewDescription;
+        EmojiTextView timeStamp;*/
+
         TextView textViewTitle;
         TextView textViewDescription;
         TextView timeStamp;
@@ -70,5 +87,6 @@ public class ForumAdapter extends FirestoreRecyclerAdapter<Forum,ForumAdapter.Fo
     public int getItemCount() {
         return super.getItemCount();
     }
+
 }
 

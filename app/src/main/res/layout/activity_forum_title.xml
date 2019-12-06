@@ -181,8 +181,16 @@
                     android:id="@+id/my_recycler_view"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
+                    android:background="#00FFFFFF"
                     android:padding="20dp"></androidx.recyclerview.widget.RecyclerView>
             </LinearLayout>
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:id="@+id/fabAdd"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom|end"
+                android:backgroundTint="#32a85d"
+                app:srcCompat="@drawable/baseline_note_add_black_18dp" />
         </FrameLayout>
     </LinearLayout>
 

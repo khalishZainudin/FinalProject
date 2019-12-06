@@ -2,6 +2,7 @@ package my.edu.fsktm.um.finalproject.Fragment;
 
 
 import android.content.Intent;
+import android.icu.text.SimpleDateFormat;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -60,6 +61,9 @@ public class ReviewFragment extends Fragment {
                 String title = forum.getTitle();
                 String description = forum.getDescription();
                 String username = forum.getUser();
+                SimpleDateFormat simpleDateFormat = new SimpleDateFormat("MMMM dd yyyy, hh:mm a");
+                String uncovertedTimeStamp = (forum.getDatePosted().toDate().toString());
+                String ConvertedTimeStamp = simpleDateFormat.format(new Date(uncovertedTimeStamp));
                 String id = documentSnapshot.getId();
                 Intent intent = new Intent(getActivity(), ForumInterface.class);
                 Bundle extras = new Bundle();
@@ -68,6 +72,7 @@ public class ReviewFragment extends Fragment {
                 extras.putString("TITLE",title);
                 extras.putString("DESCRIPTION",description);
                 extras.putString("USER",username);
+                extras.putString("TIME_POSTED",ConvertedTimeStamp);
                 intent.putExtras(extras);
                 startActivity(intent);
             }
