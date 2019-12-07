@@ -5,46 +5,56 @@
     android:orientation="vertical">
 
     <LinearLayout
-        android:id="@+id/reply_layout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:weightSum="4">
-
-        <androidx.emoji.widget.EmojiTextView
-            android:id="@+id/tvDescription_reply"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="description"
-            android:textSize="15sp" />
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/users_layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:weightSum="3">
+        android:orientation="vertical"
+        android:background="@drawable/round_square_textbox">
 
-        <androidx.emoji.widget.EmojiTextView
-            android:id="@+id/tvUsername"
+        <LinearLayout
+            android:id="@+id/users_layout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:weightSum="3">
+
+            <androidx.emoji.widget.EmojiTextView
+                android:id="@+id/tvUsername"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                android:padding="4dp"
+                android:text="name"
+                android:textSize="15sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/tvTimestampMessages"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="right"
+                android:padding="4dp"
+                android:text="timestamp"
+                android:textIsSelectable="false"
+                android:textSize="15sp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/reply_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="2"
-            android:text="name"
-            android:textSize="15sp"
-            android:textStyle="bold" />
+            android:weightSum="4">
 
-        <TextView
-            android:id="@+id/tvTimestampMessages"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:gravity="right"
-            android:text="timestamp"
-            android:textIsSelectable="false"
-            android:textSize="15sp" />
+            <androidx.emoji.widget.EmojiTextView
+                android:id="@+id/tvDescription_reply"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:padding="10dp"
+                android:text="description"
+                android:textSize="15sp" />
 
+        </LinearLayout>
     </LinearLayout>
 
     <Button

@@ -181,7 +181,8 @@
                     android:id="@+id/my_recycler_view"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:background="#00FFFFFF"
+                    android:background="@drawable/title_fragment_box"
+                    android:elevation="10dp"
                     android:padding="20dp"></androidx.recyclerview.widget.RecyclerView>
             </LinearLayout>
             <com.google.android.material.floatingactionbutton.FloatingActionButton

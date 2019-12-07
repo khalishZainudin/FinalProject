@@ -4,7 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
-
+import androidx.recyclerview.widget.RecyclerView;
 
 
 import android.content.Intent;
@@ -26,14 +26,15 @@ public class ForumTitle extends AppCompatActivity {
 
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
     ForumTitle context;
-
+    RecyclerView background;
     ImageButton IVReview,IVTechnical,IVHardware;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_forum_title);
         FloatingActionButton fabadd = (FloatingActionButton) findViewById(R.id.fabAdd);
-
+        background = (RecyclerView)findViewById(R.id.my_recycler_view);
+        background.setVisibility(View.GONE);
         context = this;
 
         View.OnClickListener listener = new View.OnClickListener() {
@@ -41,12 +42,15 @@ public class ForumTitle extends AppCompatActivity {
             public void onClick(View v) {
                 Fragment selectedFragment = null;
                 if (v == findViewById(R.id.iBReview)){
+                    background.setVisibility(View.VISIBLE);
                     selectedFragment = new ReviewFragment();
                 }
                 else if (v == findViewById(R.id.iBTech)){
+                    background.setVisibility(View.VISIBLE);
                     selectedFragment = new TechnicalSupportFragment();
                 }
                 else if (v == findViewById(R.id.iBHardware)){
+                    background.setVisibility(View.VISIBLE);
                     selectedFragment = new HardwareFragment();
                 }
                 FragmentManager manager = getSupportFragmentManager();
