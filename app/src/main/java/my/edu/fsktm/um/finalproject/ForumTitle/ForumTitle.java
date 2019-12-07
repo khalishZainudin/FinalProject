@@ -1,35 +1,21 @@
 package my.edu.fsktm.um.finalproject.ForumTitle;
 
-
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
+
 
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageButton;
-import android.widget.ImageView;
-import android.widget.TextView;
 
-import com.firebase.ui.firestore.FirestoreRecyclerOptions;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.firebase.database.core.Context;
-import com.google.firebase.firestore.CollectionReference;
-import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.Query;
-import com.google.firebase.firestore.QueryDocumentSnapshot;
-import com.google.firebase.firestore.QuerySnapshot;
-import com.google.firebase.firestore.auth.User;
 
-import java.util.ArrayList;
+import com.google.firebase.firestore.FirebaseFirestore;
+
 
 import my.edu.fsktm.um.finalproject.Fragment.HardwareFragment;
 import my.edu.fsktm.um.finalproject.Fragment.ReviewFragment;
@@ -81,6 +67,9 @@ public class ForumTitle extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(ForumTitle.this,AddForum.class);
+                Bundle extras = new Bundle();
+                extras.putString("USER","Test_User");
+                intent.putExtras(extras);
                 startActivity(intent);
             }
         });

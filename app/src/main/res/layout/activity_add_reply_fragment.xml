@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="150dp"
+    android:orientation="vertical"
+    tools:context=".Fragment.AddReplyFragment">
+
+    <TextView
+        android:id="@+id/tvReply"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="top|center"
+        android:padding="10dp"
+        android:text="Your Reply"
+        android:textSize="18sp" />
+
+    <EditText
+        android:id="@+id/etReply"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:ems="10"
+        android:hint="Type your reply here"
+        android:inputType="textPersonName"
+        android:padding="10dp" />
+
+    <Button
+        android:id="@+id/bSubmitReply"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|center"
+        android:text="Submit Reply" />
+</FrameLayout>

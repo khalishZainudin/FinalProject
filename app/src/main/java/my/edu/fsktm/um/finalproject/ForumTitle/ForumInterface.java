@@ -1,6 +1,8 @@
 package my.edu.fsktm.um.finalproject.ForumTitle;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.emoji.bundled.BundledEmojiCompatConfig;
+import androidx.emoji.text.EmojiCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -15,6 +17,7 @@ import com.google.firebase.firestore.Query;
 
 import org.w3c.dom.Text;
 
+import my.edu.fsktm.um.finalproject.MainActivity;
 import my.edu.fsktm.um.finalproject.R;
 
 public class ForumInterface extends AppCompatActivity {
@@ -28,7 +31,7 @@ public class ForumInterface extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_forum_interface);
-
+        EmojiCompat.init(new BundledEmojiCompatConfig(ForumInterface.this));
         Intent intent = getIntent();
         Bundle extras = intent.getExtras();
 
@@ -53,16 +56,16 @@ public class ForumInterface extends AppCompatActivity {
         username.setText(forum_username);
         timePosted.setText(forum_time_posted);
 
-        setUpRecyclerView();
+        setUpRecyclerView(extras);
     }
 
-    private void setUpRecyclerView(){
-        Query query = forumMessages.orderBy("timePosted",Query.Direction.DESCENDING);
+    private void setUpRecyclerView(Bundle bundle){
+        Query query = forumMessages.orderBy("timePosted",Query.Direction.ASCENDING);
         FirestoreRecyclerOptions<Messages> options = new FirestoreRecyclerOptions.Builder<Messages>()
                 .setQuery(query,Messages.class)
                 .build();
 
-        adapter = new MessagesAdapter(options);
+        adapter = new MessagesAdapter(options,bundle);
 
         RecyclerView recyclerView = findViewById(R.id.my_recycler_view_messages);
         recyclerView.setHasFixedSize(true);

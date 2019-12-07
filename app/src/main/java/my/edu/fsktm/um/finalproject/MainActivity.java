@@ -1,6 +1,8 @@
 package my.edu.fsktm.um.finalproject;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.emoji.bundled.BundledEmojiCompatConfig;
+import androidx.emoji.text.EmojiCompat;
 
 import android.content.Intent;
 import android.graphics.drawable.AnimationDrawable;
@@ -19,7 +21,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
+        EmojiCompat.init(new BundledEmojiCompatConfig(MainActivity.this));
 
         mylayout = (RelativeLayout) findViewById(R.id.my_bg_layout);
         animationDrawable = (AnimationDrawable) mylayout.getBackground();

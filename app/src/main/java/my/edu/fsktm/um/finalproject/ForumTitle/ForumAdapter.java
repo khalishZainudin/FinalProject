@@ -37,7 +37,6 @@ public class ForumAdapter extends FirestoreRecyclerAdapter<Forum,ForumAdapter.Fo
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("MMMM dd yyyy, hh:mm a");
         String uncovertedTimeStamp = (forum.getDatePosted().toDate().toString());
         String ConvertedTimeStamp = simpleDateFormat.format(new Date(uncovertedTimeStamp));
-
         forumHolder.timeStamp.setText(ConvertedTimeStamp);
 
     }
@@ -52,13 +51,10 @@ public class ForumAdapter extends FirestoreRecyclerAdapter<Forum,ForumAdapter.Fo
     }
     class ForumHolder extends RecyclerView.ViewHolder{
 
-        /*EmojiTextView textViewTitle;
+        EmojiTextView textViewTitle;
         EmojiTextView textViewDescription;
-        EmojiTextView timeStamp;*/
-
-        TextView textViewTitle;
-        TextView textViewDescription;
         TextView timeStamp;
+
         public ForumHolder(View itemView) {
             super(itemView);
             textViewTitle = itemView.findViewById(R.id.tvTitle);

@@ -10,6 +10,8 @@ import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.emoji.bundled.BundledEmojiCompatConfig;
+import androidx.emoji.text.EmojiCompat;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -34,6 +36,7 @@ public class HardwareFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_hardware,container,false);
+
         return view;
     }
     @Override

@@ -6,15 +6,6 @@
     android:layout_height="match_parent"
     tools:context=".ForumTitle.AddForum">
 
-    <TextView
-        android:id="@+id/tvAddForum"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="ADD FORUM"
-        android:textSize="36sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
-
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
@@ -24,6 +15,14 @@
             android:layout_height="wrap_content"
             android:orientation="vertical"
             android:padding="50dp">
+
+            <TextView
+                android:id="@+id/tvAddForum"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="ADD TOPIC"
+                android:textSize="36sp" />
 
             <TextView
                 android:id="@+id/tvType"
@@ -43,7 +42,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="clip_horizontal"
                 android:padding="7dp"
-                android:text="Title"
+                android:text="Topic Title"
                 android:textSize="18sp" />
 
             <EditText
@@ -53,7 +52,7 @@
                 android:ems="10"
                 android:inputType="textPersonName"
                 android:padding="10dp"
-                android:text="Title" />
+                android:hint="Title" />
 
             <TextView
                 android:id="@+id/tvDescription"
@@ -61,19 +60,36 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="clip_horizontal"
                 android:padding="7dp"
-                android:text="Description"
+                android:text="Topic Description"
                 android:textSize="18sp" />
 
             <EditText
                 android:id="@+id/etDescription"
                 android:layout_width="312dp"
-                android:layout_height="318dp"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:inputType="textPersonName"
+                android:padding="10dp"
+                android:hint="Description" />
+
+            <TextView
+                android:id="@+id/tvAddPost"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="7dp"
+                android:text="Enter Your Post"
+                android:textSize="18sp" />
+
+            <EditText
+                android:id="@+id/etAddPost"
+                android:layout_width="match_parent"
+                android:layout_height="226dp"
                 android:background="@drawable/squaretextbox"
                 android:ems="10"
                 android:gravity="top|left"
+                android:hint="What is your topic about?"
                 android:inputType="textPersonName"
-                android:padding="10dp"
-                android:text="Description" />
+                android:padding="10dp" />
 
             <Space
                 android:layout_width="match_parent"

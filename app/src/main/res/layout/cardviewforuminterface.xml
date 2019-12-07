@@ -2,17 +2,15 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="vertical"
-    android:weightSum="2">
+    android:orientation="vertical">
 
     <LinearLayout
         android:id="@+id/reply_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="1"
         android:weightSum="4">
 
-        <TextView
+        <androidx.emoji.widget.EmojiTextView
             android:id="@+id/tvDescription_reply"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -26,10 +24,9 @@
         android:id="@+id/users_layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_weight="1"
         android:weightSum="3">
 
-        <TextView
+        <androidx.emoji.widget.EmojiTextView
             android:id="@+id/tvUsername"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -42,12 +39,25 @@
             android:id="@+id/tvTimestampMessages"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="right"
             android:layout_weight="1"
+            android:gravity="right"
             android:text="timestamp"
             android:textIsSelectable="false"
             android:textSize="15sp" />
 
     </LinearLayout>
+
+    <Button
+        android:id="@+id/bAdd"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Add Reply" />
+
+    <FrameLayout
+        android:id="@+id/replyFragment"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    </FrameLayout>
 
 </LinearLayout>
