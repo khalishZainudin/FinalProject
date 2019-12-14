@@ -82,31 +82,15 @@ public class UpdateProfileActivity extends AppCompatActivity {
                 if (!TextUtils.isEmpty(name) && mImageUri != null){
                     final Map<String, Object> user_info = new HashMap<>();
                     user_info.put("name",name);
-                    user_info.put("image",mImageUri);
-                    userRef.document(userID);
-                    db.collection("Users_Profile").document(userID).set(user_info);
-                    Toast.makeText(UpdateProfileActivity.this, "Successful", Toast.LENGTH_SHORT).show();
-                    Intent i = new Intent(UpdateProfileActivity.this, MainMenuActivity.class);
-                    startActivity(i);
-
-
-                    //userRef.document(userID).set(user_info);
-
-
-
-                    /*StorageReference filepath = mStorageRef.child(mImageUri.getLastPathSegment());
-                    filepath.putFile(mImageUri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                    user_info.put("image",mImageUri.toString());
+                    db.collection("Users_Profile").document(mAuth.getUid()).set(user_info).addOnCompleteListener(new OnCompleteListener<Void>() {
                         @Override
-                        public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                            @SuppressWarnings("VisibleForTests")
-                            String downloadUrl = taskSnapshot.getDownloadUrl().toString();
-                            mDatabaseUsers.child(userID).child("name").setValue(name);
-                            mDatabaseUsers.child(userID).child("image").setValue(downloadUrl);
-
-
+                        public void onComplete(@NonNull Task<Void> task) {
+                            Toast.makeText(UpdateProfileActivity.this, "Successful", Toast.LENGTH_SHORT).show();
+                            Intent i = new Intent(UpdateProfileActivity.this, MainMenuActivity.class);
+                            startActivity(i);
                         }
-                    });*/
-
+                    });
                 }
             }
         });
