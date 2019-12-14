@@ -5,7 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="150dp"
     android:orientation="vertical"
-    tools:context=".ForumTitle.Fragment.AddReplyFragment">
+    tools:context=".ForumTitle.Fragment.AddReplyFragment"
+    android:background="@color/purple_300">
 
     <TextView
         android:id="@+id/tvReply"
@@ -14,6 +15,7 @@
         android:layout_gravity="top|center"
         android:padding="10dp"
         android:text="Your Reply"
+        android:textColor="#FFCDD2"
         android:textSize="18sp" />
 
     <EditText
@@ -24,12 +26,14 @@
         android:ems="10"
         android:hint="Type your reply here"
         android:inputType="textPersonName"
-        android:padding="10dp" />
+        android:padding="10dp"
+        android:textColor="#FFCDD2" />
 
     <Button
         android:id="@+id/bSubmitReply"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|center"
-        android:text="Submit Reply" />
+        android:text="Submit Reply"
+        android:textColor="#000000" />
 </FrameLayout>

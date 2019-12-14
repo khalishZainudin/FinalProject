@@ -11,12 +11,12 @@
         android:id="@+id/Forum"
         android:layout_width="match_parent"
         android:layout_height="150dp"
-        android:background="?attr/colorPrimary"
+        android:background="@color/purple_400"
         android:minHeight="?attr/actionBarSize"
         android:theme="?attr/actionBarTheme"
         app:title="Forum"
         app:titleMargin="4dp"
-        app:titleMarginBottom="90dp"
+        app:titleMarginBottom="100dp"
         app:titleTextAppearance="@style/TextAppearance.AppCompat.Large" />
 
     <LinearLayout
@@ -24,17 +24,18 @@
         android:layout_height="match_parent"
         android:layout_marginTop="50dp"
         android:orientation="vertical"
+        android:background="@color/purple_400"
         android:padding="24dp">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/roundsquare"
+            android:background="@color/purple_400"
             android:orientation="vertical">
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="150dp"
+                android:layout_height="wrap_content"
                 android:orientation="vertical">
 
                 <LinearLayout
@@ -53,16 +54,19 @@
 
                         <ImageButton
                             android:id="@+id/iBReview"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
+                            android:layout_width="52dp"
+                            android:layout_height="46dp"
+                            android:background="@drawable/roundsquare"
                             app:srcCompat="@drawable/baseline_rate_review_black_18dp" />
 
                         <TextView
                             android:id="@+id/textView"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            android:fontFamily="sans-serif-smallcaps"
                             android:gravity="center"
-                            android:text="Review" />
+                            android:text="Review"
+                            android:textColor="@color/grey_100" />
                     </LinearLayout>
 
                     <Space
@@ -75,20 +79,23 @@
                         android:layout_weight="1"
                         android:gravity="center"
                         android:orientation="vertical"
-                        android:padding="8dp">
+                        android:padding="4dp">
 
                         <ImageButton
                             android:id="@+id/iBTech"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
+                            android:layout_width="52dp"
+                            android:layout_height="46dp"
+                            android:background="@drawable/roundsquare"
                             app:srcCompat="@drawable/baseline_build_black_18dp" />
 
                         <TextView
                             android:id="@+id/textView2"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            android:fontFamily="sans-serif-smallcaps"
                             android:gravity="center"
-                            android:text="Technical Support" />
+                            android:text="Technical Support"
+                            android:textColor="@color/grey_100" />
                     </LinearLayout>
 
                     <Space
@@ -101,62 +108,27 @@
                         android:layout_weight="1"
                         android:gravity="center"
                         android:orientation="vertical"
-                        android:padding="8dp">
+                        android:padding="4dp">
 
                         <ImageButton
                             android:id="@+id/iBHardware"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
+                            android:layout_width="52dp"
+                            android:layout_height="46dp"
+                            android:background="@drawable/roundsquare"
                             app:srcCompat="@drawable/baseline_computer_black_18dp" />
 
                         <TextView
                             android:id="@+id/textView3"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            android:fontFamily="sans-serif-smallcaps"
                             android:gravity="center"
-                            android:text="Hardware" />
+                            android:text="Hardware"
+                            android:textColor="@color/grey_100" />
                     </LinearLayout>
 
                 </LinearLayout>
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="horizontal"
-                    android:weightSum="3">
-
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1"
-                        android:gravity="center"
-                        android:orientation="vertical"
-                        android:padding="8dp"></LinearLayout>
-
-                    <Space
-                        android:layout_width="10dp"
-                        android:layout_height="wrap_content" />
-
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1"
-                        android:gravity="center"
-                        android:orientation="vertical"
-                        android:padding="8dp"></LinearLayout>
-
-                    <Space
-                        android:layout_width="10dp"
-                        android:layout_height="wrap_content" />
-
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1"
-                        android:gravity="center"
-                        android:orientation="vertical"
-                        android:padding="8dp"></LinearLayout>
-                </LinearLayout>
             </LinearLayout>
         </LinearLayout>
 
@@ -181,7 +153,7 @@
                     android:id="@+id/my_recycler_view"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:background="@drawable/title_fragment_box"
+                    android:background="@color/purple_300"
                     android:elevation="10dp"
                     android:padding="20dp"></androidx.recyclerview.widget.RecyclerView>
             </LinearLayout>
@@ -190,7 +162,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="bottom|end"
-                android:backgroundTint="#32a85d"
+                android:backgroundTint="@color/grey_100"
                 app:srcCompat="@drawable/baseline_note_add_black_18dp" />
         </FrameLayout>
     </LinearLayout>

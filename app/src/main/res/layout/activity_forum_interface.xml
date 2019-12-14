@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ForumTitle.ForumInterface">
+    tools:context=".ForumTitle.ForumInterface"
+    android:background="@color/purple_400">
 
     <LinearLayout
         android:id="@+id/firstLayout"
@@ -23,18 +24,24 @@
                 android:id="@+id/tvForumTitle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:fontFamily="sans-serif-condensed"
                 android:paddingLeft="10dp"
                 android:paddingRight="10dp"
                 android:text="ForumTitle"
-                android:textSize="30sp" />
+                android:textColor="#FFFFFF"
+                android:textSize="30sp"
+                android:textStyle="bold" />
 
             <androidx.emoji.widget.EmojiTextView
                 android:id="@+id/tvForumDesc"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:fontFamily="sans-serif-condensed-light"
                 android:padding="10dp"
                 android:text="Description"
-                android:textSize="18sp" />
+                android:textColor="#FFFFFF"
+                android:textSize="18sp"
+                android:textStyle="bold" />
         </LinearLayout>
 
         <LinearLayout
@@ -48,17 +55,21 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:fontFamily="sans-serif-condensed"
                 android:padding="10dp"
-                android:text="Forum's User" />
+                android:text="Forum's User"
+                android:textColor="#FFFFFF" />
 
             <TextView
                 android:id="@+id/tvTimePosted"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:fontFamily="sans-serif-condensed"
                 android:gravity="right"
                 android:padding="10dp"
-                android:text="TextView" />
+                android:text="TextView"
+                android:textColor="#FFFFFF" />
         </LinearLayout>
 
     </LinearLayout>

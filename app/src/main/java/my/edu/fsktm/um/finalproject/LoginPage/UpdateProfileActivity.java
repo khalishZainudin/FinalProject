@@ -1,5 +1,7 @@
 package my.edu.fsktm.um.finalproject.LoginPage;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import my.edu.fsktm.um.finalproject.MainMenuActivity;
 import my.edu.fsktm.um.finalproject.R;
@@ -14,15 +16,27 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.EventListener;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 import com.theartofdev.edmodo.cropper.CropImage;
 import com.theartofdev.edmodo.cropper.CropImageView;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class UpdateProfileActivity extends AppCompatActivity {
 
@@ -31,9 +45,11 @@ public class UpdateProfileActivity extends AppCompatActivity {
     private final static int GALLERY_REQ = 1;
     private Button doneBtn;
     private Uri mImageUri = null;
+    private FirebaseFirestore db = FirebaseFirestore.getInstance();
+    private CollectionReference userRef = db.collection("Users_Profile");
     private FirebaseAuth mAuth;
-    private DatabaseReference mDatabaseUsers;
-    private StorageReference mStorageRef;
+    //private DatabaseReference mDatabaseUsers;
+    //private StorageReference mStorageRef;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,8 +57,8 @@ public class UpdateProfileActivity extends AppCompatActivity {
         setContentView(R.layout.activity_update_profile);
 
         mAuth = FirebaseAuth.getInstance();
-        mDatabaseUsers = FirebaseDatabase.getInstance().getReference().child("Users_Profile");
-        mStorageRef = FirebaseStorage.getInstance().getReference().child("profile_images");
+        //mDatabaseUsers = FirebaseDatabase.getInstance().getReference().child("Users_Profile");
+        //mStorageRef = FirebaseStorage.getInstance().getReference().child("profile_images");
         profUserName = (EditText)findViewById(R.id.profUserName);
         imageButton = (ImageButton)findViewById(R.id.imagebutton);
         doneBtn = (Button)findViewById(R.id.doneBtn);
@@ -64,8 +80,21 @@ public class UpdateProfileActivity extends AppCompatActivity {
                 final String name = profUserName.getText().toString().trim();
                 final String userID = mAuth.getCurrentUser().getUid();
                 if (!TextUtils.isEmpty(name) && mImageUri != null){
+                    final Map<String, Object> user_info = new HashMap<>();
+                    user_info.put("name",name);
+                    user_info.put("image",mImageUri);
+                    userRef.document(userID);
+                    db.collection("Users_Profile").document(userID).set(user_info);
+                    Toast.makeText(UpdateProfileActivity.this, "Successful", Toast.LENGTH_SHORT).show();
+                    Intent i = new Intent(UpdateProfileActivity.this, MainMenuActivity.class);
+                    startActivity(i);
 
-                    StorageReference filepath = mStorageRef.child(mImageUri.getLastPathSegment());
+
+                    //userRef.document(userID).set(user_info);
+
+
+
+                    /*StorageReference filepath = mStorageRef.child(mImageUri.getLastPathSegment());
                     filepath.putFile(mImageUri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                         @Override
                         public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
@@ -74,11 +103,9 @@ public class UpdateProfileActivity extends AppCompatActivity {
                             mDatabaseUsers.child(userID).child("name").setValue(name);
                             mDatabaseUsers.child(userID).child("image").setValue(downloadUrl);
 
-                            Toast.makeText(UpdateProfileActivity.this, "Successful", Toast.LENGTH_SHORT).show();
-                            Intent i = new Intent(UpdateProfileActivity.this, MainMenuActivity.class);
-                            startActivity(i);
+
                         }
-                    });
+                    });*/
 
                 }
             }

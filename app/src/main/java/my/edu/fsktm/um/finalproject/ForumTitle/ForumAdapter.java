@@ -14,7 +14,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
-import com.google.firebase.database.core.Context;
 import com.google.firebase.firestore.DocumentSnapshot;
 
 import java.util.Date;
@@ -22,7 +21,6 @@ import java.util.Date;
 import my.edu.fsktm.um.finalproject.R;
 
 public class ForumAdapter extends FirestoreRecyclerAdapter<Forum,ForumAdapter.ForumHolder> {
-
 
     private OnItemClickListener listener;
 
