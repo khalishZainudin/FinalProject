@@ -1,6 +1,5 @@
 package my.edu.fsktm.um.finalproject.ForumTitle;
 
-import android.content.Intent;
 import android.icu.text.SimpleDateFormat;
 import android.os.Bundle;
 import android.os.SystemClock;
@@ -9,18 +8,14 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.FrameLayout;
-import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.emoji.bundled.BundledEmojiCompatConfig;
 import androidx.emoji.text.EmojiCompat;
-import androidx.emoji.widget.EmojiEditText;
 import androidx.emoji.widget.EmojiTextView;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
@@ -29,7 +24,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.Date;
 
-import my.edu.fsktm.um.finalproject.Fragment.AddReplyFragment;
+import my.edu.fsktm.um.finalproject.ForumTitle.Fragment.AddReplyFragment;
 
 import my.edu.fsktm.um.finalproject.R;
 

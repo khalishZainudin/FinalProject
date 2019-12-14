@@ -17,9 +17,9 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 
-import my.edu.fsktm.um.finalproject.Fragment.HardwareFragment;
-import my.edu.fsktm.um.finalproject.Fragment.ReviewFragment;
-import my.edu.fsktm.um.finalproject.Fragment.TechnicalSupportFragment;
+import my.edu.fsktm.um.finalproject.ForumTitle.Fragment.HardwareFragment;
+import my.edu.fsktm.um.finalproject.ForumTitle.Fragment.ReviewFragment;
+import my.edu.fsktm.um.finalproject.ForumTitle.Fragment.TechnicalSupportFragment;
 import my.edu.fsktm.um.finalproject.R;
 
 public class ForumTitle extends AppCompatActivity {

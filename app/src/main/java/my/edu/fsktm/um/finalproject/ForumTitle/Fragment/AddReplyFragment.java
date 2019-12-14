@@ -1,4 +1,4 @@
-package my.edu.fsktm.um.finalproject.Fragment;
+package my.edu.fsktm.um.finalproject.ForumTitle.Fragment;
 
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -7,12 +7,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Toast;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
 
 import com.google.firebase.Timestamp;
 import com.google.firebase.firestore.FirebaseFirestore;

@@ -1,7 +1,6 @@
 package my.edu.fsktm.um.finalproject.LoginPage;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -20,7 +19,6 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
 import my.edu.fsktm.um.finalproject.ForumTitle.ForumTitle;
-import my.edu.fsktm.um.finalproject.MainActivity;
 import my.edu.fsktm.um.finalproject.R;
 
 public class EmailPassActivity extends BaseActivity implements View.OnClickListener {
@@ -53,7 +51,11 @@ public class EmailPassActivity extends BaseActivity implements View.OnClickListe
         findViewById(R.id.emailCreateAccountButton).setOnClickListener(this);
         findViewById(R.id.signOutButton).setOnClickListener(this);
         findViewById(R.id.verifyEmailButton).setOnClickListener(this);
+
+        // button next menu
         findViewById(R.id.bTest).setOnClickListener(this);
+        findViewById(R.id.goToUser).setOnClickListener(this);
+
         // [START initialize_auth]
         // Initialize Firebase Auth
         mAuth = FirebaseAuth.getInstance();
@@ -209,6 +211,7 @@ public class EmailPassActivity extends BaseActivity implements View.OnClickListe
             findViewById(R.id.emailPasswordButtons).setVisibility(View.GONE);
             findViewById(R.id.emailPasswordFields).setVisibility(View.GONE);
             findViewById(R.id.signedInButtons).setVisibility(View.VISIBLE);
+            findViewById(R.id.goToUser).setVisibility(View.VISIBLE);
 
             findViewById(R.id.verifyEmailButton).setEnabled(!user.isEmailVerified());
         } else {
@@ -235,6 +238,10 @@ public class EmailPassActivity extends BaseActivity implements View.OnClickListe
         } else if (i == R.id.bTest){
             Intent intent = new Intent (this, ForumTitle.class);
             startActivity(intent);
+        } else if (i == R.id.goToUser){
+            Intent intent = new Intent (this, UpdateProfileActivity.class);
+            startActivity(intent);
         }
     }
+
 }

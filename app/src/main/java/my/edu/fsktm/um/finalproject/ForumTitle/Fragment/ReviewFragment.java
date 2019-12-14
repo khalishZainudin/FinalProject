@@ -1,4 +1,4 @@
-package my.edu.fsktm.um.finalproject.Fragment;
+package my.edu.fsktm.um.finalproject.ForumTitle.Fragment;
 
 
 import android.content.Intent;
@@ -10,8 +10,6 @@ import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.emoji.bundled.BundledEmojiCompatConfig;
-import androidx.emoji.text.EmojiCompat;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -29,25 +27,27 @@ import my.edu.fsktm.um.finalproject.ForumTitle.ForumAdapter;
 import my.edu.fsktm.um.finalproject.ForumTitle.ForumInterface;
 import my.edu.fsktm.um.finalproject.R;
 
-public class HardwareFragment extends Fragment {
+public class ReviewFragment extends Fragment {
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
-    private CollectionReference userRef = db.collection("Hardware");
+    private CollectionReference userRef = db.collection("Review");
     private ForumAdapter adapter;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_hardware,container,false);
 
+        View view =  inflater.inflate(R.layout.fragment_review,container,false);
         return view;
     }
+
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         Query query = userRef.orderBy("DatePosted",Query.Direction.DESCENDING);
         FirestoreRecyclerOptions<Forum> options = new
                 FirestoreRecyclerOptions.Builder<Forum>()
-                .setQuery(query, Forum.class)
+                .setQuery(query,Forum.class)
                 .build();
         adapter = new ForumAdapter(options);
-        RecyclerView recyclerView = (RecyclerView)view.findViewById(R.id.rvHard);
+        RecyclerView recyclerView = (RecyclerView)view.findViewById(R.id.rvReview);
         recyclerView.setHasFixedSize(true);
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this.getActivity());
         recyclerView.setLayoutManager(layoutManager);
@@ -89,4 +89,5 @@ public class HardwareFragment extends Fragment {
         super.onStop();
         adapter.stopListening();
     }
+
 }

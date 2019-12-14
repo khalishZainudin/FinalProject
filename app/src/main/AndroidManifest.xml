@@ -9,11 +9,13 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".MainActivity"></activity>
+        <activity android:name=".LoginPage.UpdateProfileActivity" />
         <activity android:name=".ForumTitle.AddForum" />
         <activity android:name=".ForumTitle.ForumInterface" />
         <activity android:name=".MainMenuActivity" />
         <activity android:name=".LoginPage.EmailPassActivity" />
-        <activity android:name=".MainActivity">
+        <activity android:name=".SplashScreenActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -21,6 +23,10 @@
             </intent-filter>
         </activity>
         <activity android:name=".ForumTitle.ForumTitle" />
+
+        <meta-data
+            android:name="preloaded_fonts"
+            android:resource="@array/preloaded_fonts" />
     </application>
 
 </manifest>
