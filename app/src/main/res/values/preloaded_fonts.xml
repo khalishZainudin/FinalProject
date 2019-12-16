@@ -2,5 +2,7 @@
 <resources>
     <array name="preloaded_fonts" translatable="false">
         <item>@font/alegreya_sans_italic</item>
+        <item>@font/amatic_sc_bold</item>
+        <item>@font/merienda_one</item>
     </array>
 </resources>

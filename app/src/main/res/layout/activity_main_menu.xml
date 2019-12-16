@@ -19,6 +19,18 @@
             android:layout_height="match_parent"
             android:orientation="vertical" >
 
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="50dp"
+                android:fontFamily="@font/merienda_one"
+                android:text="Welcome to PC Helper Main Menu"
+                android:textColor="@color/white"
+                android:textSize="20sp"
+                android:textStyle="bold|italic"
+                android:gravity="center"/>
+
             <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -39,10 +51,11 @@
                     android:orientation="vertical">
 
                     <ImageView
-                        android:layout_width="30dp"
-                        android:layout_height="30dp"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
                         android:layout_gravity="center_horizontal"
                         android:layout_marginTop="10dp"
+                        android:onClick="goToForumPage"
                         android:layout_marginBottom="-5dp"
                         android:src="@drawable/ic_forum_black_24dp" />
 
@@ -79,19 +92,61 @@
                     android:orientation="vertical">
 
                     <ImageView
-                        android:layout_width="30dp"
-                        android:layout_height="30dp"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
                         android:layout_gravity="center_horizontal"
                         android:layout_marginTop="10dp"
                         android:layout_marginBottom="-5dp"
-                        android:src="@drawable/ic_forum_black_24dp" />
+                        android:onClick="goToUpdateProfile"
+                        android:src="@drawable/ic_user" />
 
                     <Button
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:background="#00FFFFFF"
-                        android:onClick="goToForumPage"
-                        android:text="Forum Page"
+                        android:onClick="goToUpdateProfile"
+                        android:text="Update Profile"
+                        android:textColor="@color/white"
+                        android:textSize="20sp"
+                        android:textStyle="bold" />
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_marginHorizontal="20dp"
+                android:layout_marginTop="40dp"
+                android:elevation="5dp"
+                android:outlineAmbientShadowColor="@color/grey_800"
+                android:outlineProvider="none"
+                android:outlineSpotShadowColor="#000000"
+                app:cardBackgroundColor="@color/transparent"
+                app:cardCornerRadius="20dp"
+                android:layout_gravity="center_horizontal">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginBottom="-5dp"
+                        android:onClick="goToCompatible"
+                        android:src="@drawable/ic_compatible" />
+
+                    <Button
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="#00FFFFFF"
+                        android:onClick="goToCompatible"
+                        android:text="Compatibility"
                         android:textColor="@color/black"
                         android:textSize="20sp"
                         android:textStyle="bold" />
@@ -119,48 +174,8 @@
                     android:orientation="vertical">
 
                     <ImageView
-                        android:layout_width="30dp"
-                        android:layout_height="30dp"
-                        android:layout_gravity="center_horizontal"
-                        android:layout_marginTop="10dp"
-                        android:layout_marginBottom="-5dp"
-                        android:src="@drawable/ic_forum_black_24dp" />
-
-                    <Button
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:background="#00FFFFFF"
-                        android:onClick="goToForumPage"
-                        android:text="Forum Page"
-                        android:textColor="@color/black"
-                        android:textSize="20sp"
-                        android:textStyle="bold" />
-                </LinearLayout>
-            </androidx.cardview.widget.CardView>
-
-
-            <androidx.cardview.widget.CardView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_centerHorizontal="true"
-                android:layout_marginHorizontal="20dp"
-                android:layout_marginTop="40dp"
-                android:elevation="5dp"
-                android:outlineAmbientShadowColor="@color/grey_800"
-                android:outlineProvider="none"
-                android:outlineSpotShadowColor="#000000"
-                app:cardBackgroundColor="@color/white"
-                app:cardCornerRadius="20dp"
-                android:layout_gravity="center_horizontal">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="vertical">
-
-                    <ImageView
-                        android:layout_width="30dp"
-                        android:layout_height="30dp"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
                         android:layout_gravity="center_horizontal"
                         android:layout_marginTop="10dp"
                         android:layout_marginBottom="-5dp"

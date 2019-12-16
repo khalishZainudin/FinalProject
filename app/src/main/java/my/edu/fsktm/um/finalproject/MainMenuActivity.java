@@ -1,7 +1,9 @@
 package my.edu.fsktm.um.finalproject;
 
 import androidx.appcompat.app.AppCompatActivity;
+import my.edu.fsktm.um.finalproject.CompatibilityPage.CompatibleMainActivity;
 import my.edu.fsktm.um.finalproject.ForumPage.ForumPage;
+import my.edu.fsktm.um.finalproject.LoginPage.UpdateProfileActivity;
 
 import android.content.Intent;
 import android.graphics.drawable.AnimationDrawable;
@@ -33,6 +35,16 @@ public class MainMenuActivity extends AppCompatActivity {
 
     public void goToForumPage(View view) {
         Intent intent = new Intent(this, ForumPage.class);
+        startActivity(intent);
+    }
+
+    public void goToUpdateProfile(View view) {
+        Intent intent = new Intent(this, UpdateProfileActivity.class);
+        startActivity(intent);
+    }
+
+    public void goToCompatible(View view) {
+        Intent intent = new Intent(this, CompatibleMainActivity.class);
         startActivity(intent);
     }
 }
