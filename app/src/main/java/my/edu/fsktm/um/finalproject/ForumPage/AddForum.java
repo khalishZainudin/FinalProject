@@ -1,33 +1,57 @@
 package my.edu.fsktm.um.finalproject.ForumPage;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.ContentResolver;
 import android.content.Intent;
+import android.database.Cursor;
+import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Handler;
+import android.provider.MediaStore;
+import android.provider.OpenableColumns;
 import android.text.TextUtils;
 import android.view.View;
+import android.webkit.MimeTypeMap;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.Timestamp;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.OnProgressListener;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
+import com.google.type.Date;
+import com.squareup.picasso.Picasso;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.UUID;
 
 import my.edu.fsktm.um.finalproject.R;
+import my.edu.fsktm.um.finalproject.Upload;
 
 public class AddForum extends AppCompatActivity {
-    private Uri filePath = null;
+    private Uri mImageUri = null;
     private final int PICK_IMAGE_REQUEST = 71;
+    private StorageReference mStorageRef;
+    String holderLocation;
     FirebaseFirestore db = FirebaseFirestore.getInstance();
     Spinner typeSpinner;
     EditText etTitle;
@@ -37,7 +61,9 @@ public class AddForum extends AppCompatActivity {
     String doc_id = "";
     String username = "";
     ImageView ivAttach;
+    ImageView ivReview;
     TextView tvAttach;
+    ProgressBar mProgressBar;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -54,6 +80,9 @@ public class AddForum extends AppCompatActivity {
         bAdd = (Button)findViewById(R.id.bAdd);
         ivAttach = (ImageView)findViewById(R.id.ivAttach);
         tvAttach = (TextView)findViewById(R.id.tvAttach);
+        ivReview = (ImageView)findViewById(R.id.ivReview);
+        mProgressBar = (ProgressBar)findViewById(R.id.progressBar);
+        mStorageRef = FirebaseStorage.getInstance().getReference();
 
         ArrayAdapter<String> myAdapter = new ArrayAdapter<String>(AddForum.this,
                 android.R.layout.simple_list_item_1,getResources().getStringArray(R.array.Type));
@@ -102,21 +131,68 @@ public class AddForum extends AppCompatActivity {
                 messages.put("messages",post);
                 messages.put("user",username);
                 messages.put("timePosted",now);
-                if(filePath!=null) {
-                    messages.put("images", filePath.toString());
+                if(mImageUri==null) {
+                    messages.put("images", "");
                 }
+
+                final ContentResolver cR = getContentResolver();
+                if(mImageUri!=null){
+                    final StorageReference fileReference = mStorageRef.child(System.currentTimeMillis()+ "." + getFileExtenstion(mImageUri));
+                    fileReference.putFile(mImageUri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                        @Override
+                        public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                            fileReference.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                                @Override
+                                public void onSuccess(Uri uri) {
+                                    String url = uri.toString();
+                                    holderLocation = url;
+                                    Handler handler = new Handler();
+                                    handler.postDelayed(new Runnable() {
+                                        @Override
+                                        public void run() {
+                                            messages.put("images",holderLocation);
+                                            mProgressBar.setProgress(0);
+                                            db.collection(type).add(forum).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+                                                @Override
+                                                public void onSuccess(DocumentReference documentReference) {
+                                                    doc_id = documentReference.getId();
+                                                    db.collection(type).document(doc_id).collection("messages").add(messages);
+                                                    Toast.makeText(getApplicationContext(),"Success Adding",Toast.LENGTH_LONG).show();
+                                                    Intent intent = new Intent(AddForum.this,ForumPage.class);
+                                                    startActivity(intent);
+                                                }
+                                            });
+                                        }
+                                    },5000);
+                                }
+                            });
+                        }
+                    }).addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception e) {
+                            Toast.makeText(AddForum.this,e.getMessage(),Toast.LENGTH_SHORT).show();
+                        }
+                    }).addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>() {
+                        @Override
+                        public void onProgress(UploadTask.TaskSnapshot taskSnapshot) {
+                            // update progress bar with progress
+                            double progress = (100 * taskSnapshot.getBytesTransferred()/ taskSnapshot.getTotalByteCount());
+                            mProgressBar.setProgress((int)progress);
+                        }
+                    });
+                }
+                /*messages.put("images",holderLocation);
+                Handler handler = new Handler();
                 db.collection(type).add(forum).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
                     @Override
                     public void onSuccess(DocumentReference documentReference) {
-
                         doc_id = documentReference.getId();
                         db.collection(type).document(doc_id).collection("messages").add(messages);
                         Toast.makeText(getApplicationContext(),"Success Adding",Toast.LENGTH_LONG).show();
+                        Intent intent = new Intent(AddForum.this,ForumTitle.class);
+                        startActivity(intent);
                     }
-                });
-
-                Intent intent = new Intent(AddForum.this, ForumPage.class);
-                startActivity(intent);
+                });*/
             }
         });
 
@@ -134,8 +210,62 @@ public class AddForum extends AppCompatActivity {
         if(requestCode == PICK_IMAGE_REQUEST && resultCode == RESULT_OK
                 && data != null && data.getData() != null )
         {
-            filePath = data.getData();
-            //filePath = Uri.fromFile(new File(data.getData()));
+            mImageUri = data.getData();
+            Picasso.get().load(mImageUri).into(ivReview);
         }
+    }
+
+    private String getFileExtenstion(Uri uri){
+        // Get type of an image
+        ContentResolver cR = getContentResolver();
+        MimeTypeMap mime = MimeTypeMap.getSingleton();
+        return mime.getExtensionFromMimeType(cR.getType(uri));
+    }
+
+    private String uploadFile(){
+        final ContentResolver cR = getContentResolver();
+        if(mImageUri!=null){
+            final StorageReference fileReference = mStorageRef.child(System.currentTimeMillis()+ "." + getFileExtenstion(mImageUri));
+            fileReference.putFile(mImageUri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                @Override
+                public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                    Task<Uri> downloadUrl = fileReference.getDownloadUrl();
+                    holderLocation = downloadUrl.toString();
+                    Handler handler = new Handler();
+                    handler.postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            mProgressBar.setProgress(0);
+                        }
+                    },5000);
+                }
+            }).addOnFailureListener(new OnFailureListener() {
+                @Override
+                public void onFailure(@NonNull Exception e) {
+                    Toast.makeText(AddForum.this,e.getMessage(),Toast.LENGTH_SHORT).show();
+                }
+            }).addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>() {
+                @Override
+                public void onProgress(UploadTask.TaskSnapshot taskSnapshot) {
+                    // update progress bar with progress
+                    double progress = (100 * taskSnapshot.getBytesTransferred()/ taskSnapshot.getTotalByteCount());
+                    mProgressBar.setProgress((int)progress);
+                }
+            });
+            return holderLocation;
+        }
+        else{
+            return null;
+        }
+    }
+    private String queryName(ContentResolver resolver, Uri uri) {
+        Cursor returnCursor =
+                resolver.query(uri, null, null, null, null);
+        assert returnCursor != null;
+        int nameIndex = returnCursor.getColumnIndex(OpenableColumns.DISPLAY_NAME);
+        returnCursor.moveToFirst();
+        String name = returnCursor.getString(nameIndex);
+        returnCursor.close();
+        return name;
     }
 }

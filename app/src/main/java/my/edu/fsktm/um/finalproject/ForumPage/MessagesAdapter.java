@@ -11,6 +11,7 @@ import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -56,14 +57,13 @@ public class MessagesAdapter extends FirestoreRecyclerAdapter<Messages, Messages
         holder.timeStamp.setText(ConvertedTimeStamp);
         holder.bAdd.setVisibility(View.GONE);
         holder.container.setVisibility(View.GONE);
-        Uri myUri = Uri.parse(model.getImages());
         if(model.getImages()!=null){
-            Picasso.with(mContext).load(myUri).into(holder.ivPicture);
+            Picasso.get().load(model.getImages()).fit().centerCrop().into(holder.ivPicture);
+            Toast.makeText(mContext, model.getImages(), Toast.LENGTH_SHORT).show();
         }
         else{
             holder.ivPicture.setVisibility(View.GONE);
         }
-
 
 
         //Compare size and add button at buttom of view

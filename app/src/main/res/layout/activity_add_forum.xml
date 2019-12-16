@@ -111,9 +111,21 @@
                     android:textSize="18sp" />
             </LinearLayout>
 
+            <ImageView
+                android:id="@+id/ivReview"
+                android:layout_width="match_parent"
+                android:layout_height="164dp"
+                tools:srcCompat="@tools:sample/avatars" />
+
             <Space
                 android:layout_width="match_parent"
                 android:layout_height="40dp" />
+
+            <ProgressBar
+                android:id="@+id/progressBar"
+                style="?android:attr/progressBarStyleHorizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
 
             <Button
                 android:id="@+id/bAdd"
