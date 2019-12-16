@@ -18,7 +18,7 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
-import my.edu.fsktm.um.finalproject.ForumTitle.ForumTitle;
+import my.edu.fsktm.um.finalproject.MainMenuActivity;
 import my.edu.fsktm.um.finalproject.R;
 
 public class EmailPassActivity extends BaseActivity implements View.OnClickListener {
@@ -53,8 +53,7 @@ public class EmailPassActivity extends BaseActivity implements View.OnClickListe
         findViewById(R.id.verifyEmailButton).setOnClickListener(this);
 
         // button next menu
-        findViewById(R.id.bTest).setOnClickListener(this);
-        findViewById(R.id.goToUser).setOnClickListener(this);
+        findViewById(R.id.goToMainMenu).setOnClickListener(this);
 
         // [START initialize_auth]
         // Initialize Firebase Auth
@@ -205,13 +204,14 @@ public class EmailPassActivity extends BaseActivity implements View.OnClickListe
         hideProgressDialog();
         if (user != null) {
             mStatusTextView.setText(getString(R.string.emailpassword_status_fmt,
-                    user.getEmail(), user.isEmailVerified()));
-            mDetailTextView.setText(getString(R.string.firebase_status_fmt, user.getUid()));
+                    user.getEmail(), user.isEmailVerified()) + "\n\nSigned-in");
+         //   mDetailTextView.setText(getString(R.string.firebase_status_fmt, user.getUid()));
 
             findViewById(R.id.emailPasswordButtons).setVisibility(View.GONE);
             findViewById(R.id.emailPasswordFields).setVisibility(View.GONE);
+            findViewById(R.id.titleText).setVisibility(View.GONE);
             findViewById(R.id.signedInButtons).setVisibility(View.VISIBLE);
-            findViewById(R.id.goToUser).setVisibility(View.VISIBLE);
+            findViewById(R.id.goToMainMenu).setVisibility(View.VISIBLE);
 
             findViewById(R.id.verifyEmailButton).setEnabled(!user.isEmailVerified());
         } else {
@@ -221,6 +221,7 @@ public class EmailPassActivity extends BaseActivity implements View.OnClickListe
             findViewById(R.id.emailPasswordButtons).setVisibility(View.VISIBLE);
             findViewById(R.id.emailPasswordFields).setVisibility(View.VISIBLE);
             findViewById(R.id.signedInButtons).setVisibility(View.GONE);
+            findViewById(R.id.goToMainMenu).setVisibility(View.GONE);
         }
     }
 
@@ -235,13 +236,9 @@ public class EmailPassActivity extends BaseActivity implements View.OnClickListe
             signOut();
         } else if (i == R.id.verifyEmailButton) {
             sendEmailVerification();
-        } else if (i == R.id.bTest){
-            Intent intent = new Intent (this, ForumTitle.class);
-            startActivity(intent);
-        } else if (i == R.id.goToUser){
-            Intent intent = new Intent (this, UpdateProfileActivity.class);
+        } else if (i == R.id.goToMainMenu){
+            Intent intent = new Intent (this, MainMenuActivity.class);
             startActivity(intent);
         }
     }
-
 }

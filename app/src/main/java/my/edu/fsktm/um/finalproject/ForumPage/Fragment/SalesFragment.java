@@ -1,5 +1,4 @@
-package my.edu.fsktm.um.finalproject.ForumTitle.Fragment;
-
+package my.edu.fsktm.um.finalproject.ForumPage.Fragment;
 
 import android.content.Intent;
 import android.icu.text.SimpleDateFormat;
@@ -22,31 +21,30 @@ import com.google.firebase.firestore.Query;
 
 import java.util.Date;
 
-import my.edu.fsktm.um.finalproject.ForumTitle.Forum;
-import my.edu.fsktm.um.finalproject.ForumTitle.ForumAdapter;
-import my.edu.fsktm.um.finalproject.ForumTitle.ForumInterface;
+import my.edu.fsktm.um.finalproject.ForumPage.Forum;
+import my.edu.fsktm.um.finalproject.ForumPage.ForumAdapter;
+import my.edu.fsktm.um.finalproject.ForumPage.ForumInterface;
 import my.edu.fsktm.um.finalproject.R;
 
-public class ReviewFragment extends Fragment {
+public class SalesFragment extends Fragment {
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
-    private CollectionReference userRef = db.collection("Review");
+    private CollectionReference userRef = db.collection("Sales");
     private ForumAdapter adapter;
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view =  inflater.inflate(R.layout.fragment_review,container,false);
+        View view = inflater.inflate(R.layout.fragment_hardware,container,false);
+
         return view;
     }
-
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         Query query = userRef.orderBy("DatePosted",Query.Direction.DESCENDING);
         FirestoreRecyclerOptions<Forum> options = new
                 FirestoreRecyclerOptions.Builder<Forum>()
-                .setQuery(query,Forum.class)
+                .setQuery(query, Forum.class)
                 .build();
         adapter = new ForumAdapter(options);
-        RecyclerView recyclerView = (RecyclerView)view.findViewById(R.id.rvReview);
+        RecyclerView recyclerView = (RecyclerView)view.findViewById(R.id.rvHard);
         recyclerView.setHasFixedSize(true);
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this.getActivity());
         recyclerView.setLayoutManager(layoutManager);
@@ -65,7 +63,7 @@ public class ReviewFragment extends Fragment {
                 String id = documentSnapshot.getId();
                 Intent intent = new Intent(getActivity(), ForumInterface.class);
                 Bundle extras = new Bundle();
-                extras.putString("FORUM_TYPE","Review");
+                extras.putString("FORUM_TYPE","Sales");
                 extras.putString("FORUM_ID",id);
                 extras.putString("TITLE",title);
                 extras.putString("DESCRIPTION",description);
@@ -88,5 +86,4 @@ public class ReviewFragment extends Fragment {
         super.onStop();
         adapter.stopListening();
     }
-
 }

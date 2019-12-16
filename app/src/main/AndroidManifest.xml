@@ -9,10 +9,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity"></activity>
+        <activity android:name=".CompatibilityPage.CompatibleMainActivity"></activity>
+        <activity android:name=".MainActivity" />
         <activity android:name=".LoginPage.UpdateProfileActivity" />
-        <activity android:name=".ForumTitle.AddForum" />
-        <activity android:name=".ForumTitle.ForumInterface" />
+        <activity android:name=".ForumPage.AddForum" />
+        <activity android:name=".ForumPage.ForumInterface" />
         <activity android:name=".MainMenuActivity" />
         <activity android:name=".LoginPage.EmailPassActivity" />
         <activity android:name=".SplashScreenActivity">
@@ -25,7 +26,7 @@
         <activity
             android:name="com.theartofdev.edmodo.cropper.CropImageActivity"
             android:theme="@style/Base.Theme.AppCompat" />
-        <activity android:name=".ForumTitle.ForumTitle" />
+        <activity android:name=".ForumPage.ForumPage" />
 
         <meta-data
             android:name="preloaded_fonts"

@@ -1,7 +1,6 @@
-package my.edu.fsktm.um.finalproject.ForumTitle;
+package my.edu.fsktm.um.finalproject.ForumPage;
 
 import com.google.firebase.Timestamp;
-import com.google.type.Date;
 
 public class Messages {
     private String messages;

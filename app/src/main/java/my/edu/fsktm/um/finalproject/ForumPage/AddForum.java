@@ -1,13 +1,10 @@
-package my.edu.fsktm.um.finalproject.ForumTitle;
+package my.edu.fsktm.um.finalproject.ForumPage;
 
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
-import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
-import android.provider.MediaStore;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -22,13 +19,9 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.Timestamp;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.type.Date;
 
-import java.io.File;
-import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.UUID;
 
 import my.edu.fsktm.um.finalproject.R;
 
@@ -122,7 +115,7 @@ public class AddForum extends AppCompatActivity {
                     }
                 });
 
-                Intent intent = new Intent(AddForum.this,ForumTitle.class);
+                Intent intent = new Intent(AddForum.this, ForumPage.class);
                 startActivity(intent);
             }
         });

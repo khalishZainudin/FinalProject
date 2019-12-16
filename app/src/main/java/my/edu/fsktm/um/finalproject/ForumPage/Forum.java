@@ -1,4 +1,4 @@
-package my.edu.fsktm.um.finalproject.ForumTitle;
+package my.edu.fsktm.um.finalproject.ForumPage;
 
 import com.google.firebase.Timestamp;
 

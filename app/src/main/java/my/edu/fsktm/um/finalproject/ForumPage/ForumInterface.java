@@ -1,4 +1,4 @@
-package my.edu.fsktm.um.finalproject.ForumTitle;
+package my.edu.fsktm.um.finalproject.ForumPage;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.emoji.bundled.BundledEmojiCompatConfig;
@@ -15,9 +15,6 @@ import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
 
-import org.w3c.dom.Text;
-
-import my.edu.fsktm.um.finalproject.MainActivity;
 import my.edu.fsktm.um.finalproject.R;
 
 public class ForumInterface extends AppCompatActivity {

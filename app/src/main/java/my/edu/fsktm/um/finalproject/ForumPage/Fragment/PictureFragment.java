@@ -1,4 +1,4 @@
-package my.edu.fsktm.um.finalproject.ForumTitle.Fragment;
+package my.edu.fsktm.um.finalproject.ForumPage.Fragment;
 
 import android.content.Intent;
 import android.icu.text.SimpleDateFormat;
@@ -21,19 +21,18 @@ import com.google.firebase.firestore.Query;
 
 import java.util.Date;
 
-import my.edu.fsktm.um.finalproject.ForumTitle.Forum;
-import my.edu.fsktm.um.finalproject.ForumTitle.ForumAdapter;
-import my.edu.fsktm.um.finalproject.ForumTitle.ForumInterface;
+import my.edu.fsktm.um.finalproject.ForumPage.Forum;
+import my.edu.fsktm.um.finalproject.ForumPage.ForumAdapter;
+import my.edu.fsktm.um.finalproject.ForumPage.ForumInterface;
 import my.edu.fsktm.um.finalproject.R;
 
-public class SalesFragment extends Fragment {
+public class PictureFragment  extends Fragment {
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
-    private CollectionReference userRef = db.collection("Sales");
+    private CollectionReference userRef = db.collection("Pictures");
     private ForumAdapter adapter;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_hardware,container,false);
-
         return view;
     }
     @Override
@@ -63,7 +62,7 @@ public class SalesFragment extends Fragment {
                 String id = documentSnapshot.getId();
                 Intent intent = new Intent(getActivity(), ForumInterface.class);
                 Bundle extras = new Bundle();
-                extras.putString("FORUM_TYPE","Sales");
+                extras.putString("FORUM_TYPE","Pictures");
                 extras.putString("FORUM_ID",id);
                 extras.putString("TITLE",title);
                 extras.putString("DESCRIPTION",description);

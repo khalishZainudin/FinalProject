@@ -24,6 +24,7 @@ public class SplashScreenActivity extends AppCompatActivity {
 //        requestWindowFeature(Window.FEATURE_NO_TITLE);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
+
         setContentView(R.layout.activity_splash_screen);
 
         ConstraintLayout img = (ConstraintLayout) findViewById(R.id.splash_layout);

@@ -1,6 +1,5 @@
-package my.edu.fsktm.um.finalproject.ForumTitle;
+package my.edu.fsktm.um.finalproject.ForumPage;
 
-import android.content.ContentResolver;
 import android.icu.text.SimpleDateFormat;
 import android.net.Uri;
 import android.os.Bundle;
@@ -23,14 +22,12 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.firebase.database.core.Context;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.squareup.picasso.Picasso;
 
 import java.util.Date;
 
-import my.edu.fsktm.um.finalproject.ForumTitle.Fragment.AddReplyFragment;
+import my.edu.fsktm.um.finalproject.ForumPage.Fragment.AddReplyFragment;
 
 import my.edu.fsktm.um.finalproject.R;
 

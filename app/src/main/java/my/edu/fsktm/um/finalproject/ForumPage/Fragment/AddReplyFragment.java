@@ -1,4 +1,4 @@
-package my.edu.fsktm.um.finalproject.ForumTitle.Fragment;
+package my.edu.fsktm.um.finalproject.ForumPage.Fragment;
 
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -10,7 +10,6 @@ import android.widget.EditText;
 
 import androidx.fragment.app.Fragment;
 
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.Timestamp;
 import com.google.firebase.firestore.FirebaseFirestore;
 

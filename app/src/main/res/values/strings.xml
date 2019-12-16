@@ -30,6 +30,8 @@
 
     <string name="firebase_status_fmt">PC Helper User: %s</string>
 
+
+    // forum page
     <string-array name="Type">
         <item>Hardware</item>
         <item>Review</item>
@@ -37,19 +39,28 @@
         <item>Sales</item>
         <item>Pictures</item>
     </string-array>
-    <string name="title_activity_user_navigation_menu">UserNavigationMenuActivity</string>
-    <string name="navigation_drawer_open">Open navigation drawer</string>
-    <string name="navigation_drawer_close">Close navigation drawer</string>
-    <string name="nav_header_title">Android Studio</string>
-    <string name="nav_header_subtitle">android.studio@android.com</string>
-    <string name="nav_header_desc">Navigation header</string>
-    <string name="action_settings">Settings</string>
 
-    <string name="menu_home">Home</string>
-    <string name="menu_gallery">Gallery</string>
-    <string name="menu_slideshow">Slideshow</string>
-    <string name="menu_tools">Tools</string>
-    <string name="menu_share">Share</string>
-    <string name="menu_send">Send</string>
+
+    // compatible part
+    <string name="proc_prompt">Choose a Processor</string>
+    <string name="mobo_prompt">Choose a Motherboard</string>
+
+    <string-array name="proc_arrays">
+        <item>AMD Ryzen5 2600</item>
+        <item>AMD Ryzen5 3600</item>
+        <item>AMD Ryzen7 2700</item>
+        <item>AMD Ryzen9 3900X</item>
+        <item>Intel i5 9400F</item>
+        <item>Intel i7 8700K</item>
+    </string-array>
+
+    <string-array name="mobo_arrays">
+        <item>MSI B450 TOMAHAWK</item>
+        <item>MSI B450M GAMING PLUS</item>
+        <item>Gigabyte B450 AORUS M</item>
+        <item>ASRock X570M Pro4</item>
+        <item>MSI B360m MORTAR</item>
+        <item>GIGABYTE Z370</item>
+    </string-array>
 
 </resources>

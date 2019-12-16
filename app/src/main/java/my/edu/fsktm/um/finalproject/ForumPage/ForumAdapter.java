@@ -1,4 +1,4 @@
-package my.edu.fsktm.um.finalproject.ForumTitle;
+package my.edu.fsktm.um.finalproject.ForumPage;
 
 import android.icu.text.SimpleDateFormat;
 import android.view.LayoutInflater;

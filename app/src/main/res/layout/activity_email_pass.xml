@@ -44,16 +44,10 @@
             tools:text="Firebase User ID: 123456789abc" />
 
         <Button
-            android:id="@+id/bTest"
+            android:id="@+id/goToMainMenu"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Next Forum" />
-
-        <Button
-            android:id="@+id/goToUser"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="User Page" />
+            android:text="Main Menu" />
 
     </LinearLayout>
 

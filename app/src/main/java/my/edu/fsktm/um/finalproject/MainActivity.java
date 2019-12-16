@@ -23,6 +23,8 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         EmojiCompat.init(new BundledEmojiCompatConfig(MainActivity.this));
 
+        getSupportActionBar().hide();
+
         mylayout = (RelativeLayout) findViewById(R.id.my_bg_layout);
         animationDrawable = (AnimationDrawable) mylayout.getBackground();
         animationDrawable.setEnterFadeDuration(4500);

@@ -1,4 +1,4 @@
-package my.edu.fsktm.um.finalproject.ForumTitle;
+package my.edu.fsktm.um.finalproject.ForumPage;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
@@ -17,17 +17,17 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 
-import my.edu.fsktm.um.finalproject.ForumTitle.Fragment.HardwareFragment;
-import my.edu.fsktm.um.finalproject.ForumTitle.Fragment.PictureFragment;
-import my.edu.fsktm.um.finalproject.ForumTitle.Fragment.ReviewFragment;
-import my.edu.fsktm.um.finalproject.ForumTitle.Fragment.SalesFragment;
-import my.edu.fsktm.um.finalproject.ForumTitle.Fragment.TechnicalSupportFragment;
+import my.edu.fsktm.um.finalproject.ForumPage.Fragment.HardwareFragment;
+import my.edu.fsktm.um.finalproject.ForumPage.Fragment.PictureFragment;
+import my.edu.fsktm.um.finalproject.ForumPage.Fragment.ReviewFragment;
+import my.edu.fsktm.um.finalproject.ForumPage.Fragment.SalesFragment;
+import my.edu.fsktm.um.finalproject.ForumPage.Fragment.TechnicalSupportFragment;
 import my.edu.fsktm.um.finalproject.R;
 
-public class ForumTitle extends AppCompatActivity {
+public class ForumPage extends AppCompatActivity {
 
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
-    ForumTitle context;
+    ForumPage context;
     RecyclerView background;
     ImageButton IVReview,IVTechnical,IVHardware,IVSales,IVPictures;
     @Override
@@ -84,7 +84,7 @@ public class ForumTitle extends AppCompatActivity {
         fabadd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(ForumTitle.this,AddForum.class);
+                Intent intent = new Intent(ForumPage.this,AddForum.class);
                 Bundle extras = new Bundle();
                 extras.putString("USER","Test_User");
                 intent.putExtras(extras);
