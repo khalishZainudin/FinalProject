@@ -65,7 +65,7 @@ public class ForumInterface extends AppCompatActivity {
                 .setQuery(query,Messages.class)
                 .build();
 
-        adapter = new MessagesAdapter(options,bundle);
+        adapter = new MessagesAdapter(this,options,bundle);
 
         RecyclerView recyclerView = findViewById(R.id.my_recycler_view_messages);
         recyclerView.setHasFixedSize(true);

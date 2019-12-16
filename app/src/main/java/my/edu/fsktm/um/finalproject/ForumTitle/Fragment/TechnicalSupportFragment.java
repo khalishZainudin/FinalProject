@@ -63,7 +63,7 @@ public class TechnicalSupportFragment extends Fragment {
                 String id = documentSnapshot.getId();
                 Intent intent = new Intent(getActivity(), ForumInterface.class);
                 Bundle extras = new Bundle();
-                extras.putString("FORUM_TYPE","Review");
+                extras.putString("FORUM_TYPE","Technical");
                 extras.putString("FORUM_ID",id);
                 extras.putString("TITLE",title);
                 extras.putString("DESCRIPTION",description);

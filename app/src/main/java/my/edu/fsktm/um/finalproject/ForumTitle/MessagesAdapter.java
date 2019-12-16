@@ -1,6 +1,8 @@
 package my.edu.fsktm.um.finalproject.ForumTitle;
 
+import android.content.ContentResolver;
 import android.icu.text.SimpleDateFormat;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.SystemClock;
 import android.view.LayoutInflater;
@@ -8,6 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.FrameLayout;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -21,7 +24,9 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.firebase.database.core.Context;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.squareup.picasso.Picasso;
 
 import java.util.Date;
 
@@ -33,16 +38,19 @@ public class MessagesAdapter extends FirestoreRecyclerAdapter<Messages, Messages
     FirebaseFirestore db = FirebaseFirestore.getInstance();
     MessagesAdapter context;
     Bundle extrasFromInterface;
+    private ForumInterface mContext; //instance variable
 
-    public MessagesAdapter(@NonNull FirestoreRecyclerOptions<Messages> options,Bundle bundle) {
+
+    public MessagesAdapter(ForumInterface context, @NonNull FirestoreRecyclerOptions<Messages> options, Bundle bundle) {
         super(options);
         extrasFromInterface = bundle;
+        this.mContext = context;
     }
 
     @Override
     protected void onBindViewHolder(final MessagesHolder holder, int position, Messages model) {
         final int newContainerId = getUniqueId();
-
+        context = this;
         holder.textViewMessages.setText(model.getMessages());
         holder.textViewUser.setText(model.getUser());
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("MMMM dd yyyy, hh:mm a");
@@ -51,6 +59,13 @@ public class MessagesAdapter extends FirestoreRecyclerAdapter<Messages, Messages
         holder.timeStamp.setText(ConvertedTimeStamp);
         holder.bAdd.setVisibility(View.GONE);
         holder.container.setVisibility(View.GONE);
+        Uri myUri = Uri.parse(model.getImages());
+        if(model.getImages()!=null){
+            Picasso.with(mContext).load(myUri).into(holder.ivPicture);
+        }
+        else{
+            holder.ivPicture.setVisibility(View.GONE);
+        }
 
 
 
@@ -95,6 +110,7 @@ public class MessagesAdapter extends FirestoreRecyclerAdapter<Messages, Messages
         EmojiTextView textViewUser;
         TextView timeStamp;
         Button bAdd;
+        ImageView ivPicture;
 
         FrameLayout container;
         public MessagesHolder(@NonNull View itemView) {
@@ -104,6 +120,7 @@ public class MessagesAdapter extends FirestoreRecyclerAdapter<Messages, Messages
             timeStamp = itemView.findViewById(R.id.tvTimestampMessages);
             bAdd = itemView.findViewById(R.id.bAdd);
             container = itemView.findViewById(R.id.replyFragment);
+            ivPicture = itemView.findViewById(R.id.ivPictures);
         }
     }
 
@@ -111,5 +128,6 @@ public class MessagesAdapter extends FirestoreRecyclerAdapter<Messages, Messages
     public int getItemCount() {
         return super.getItemCount();
     }
+
 }
 

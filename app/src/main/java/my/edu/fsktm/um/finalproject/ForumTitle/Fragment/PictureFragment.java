@@ -1,6 +1,5 @@
 package my.edu.fsktm.um.finalproject.ForumTitle.Fragment;
 
-
 import android.content.Intent;
 import android.icu.text.SimpleDateFormat;
 import android.os.Bundle;
@@ -27,9 +26,9 @@ import my.edu.fsktm.um.finalproject.ForumTitle.ForumAdapter;
 import my.edu.fsktm.um.finalproject.ForumTitle.ForumInterface;
 import my.edu.fsktm.um.finalproject.R;
 
-public class HardwareFragment extends Fragment {
+public class PictureFragment  extends Fragment {
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
-    private CollectionReference userRef = db.collection("Hardware");
+    private CollectionReference userRef = db.collection("Pictures");
     private ForumAdapter adapter;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -63,7 +62,7 @@ public class HardwareFragment extends Fragment {
                 String id = documentSnapshot.getId();
                 Intent intent = new Intent(getActivity(), ForumInterface.class);
                 Bundle extras = new Bundle();
-                extras.putString("FORUM_TYPE","Hardware");
+                extras.putString("FORUM_TYPE","Pictures");
                 extras.putString("FORUM_ID",id);
                 extras.putString("TITLE",title);
                 extras.putString("DESCRIPTION",description);

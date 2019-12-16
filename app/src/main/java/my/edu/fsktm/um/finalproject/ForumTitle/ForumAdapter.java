@@ -4,6 +4,7 @@ import android.icu.text.SimpleDateFormat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -52,6 +53,7 @@ public class ForumAdapter extends FirestoreRecyclerAdapter<Forum,ForumAdapter.Fo
         EmojiTextView textViewTitle;
         EmojiTextView textViewDescription;
         TextView timeStamp;
+        ImageView ivPicture;
 
         public ForumHolder(View itemView) {
             super(itemView);

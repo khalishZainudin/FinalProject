@@ -18,7 +18,9 @@ import com.google.firebase.firestore.FirebaseFirestore;
 
 
 import my.edu.fsktm.um.finalproject.ForumTitle.Fragment.HardwareFragment;
+import my.edu.fsktm.um.finalproject.ForumTitle.Fragment.PictureFragment;
 import my.edu.fsktm.um.finalproject.ForumTitle.Fragment.ReviewFragment;
+import my.edu.fsktm.um.finalproject.ForumTitle.Fragment.SalesFragment;
 import my.edu.fsktm.um.finalproject.ForumTitle.Fragment.TechnicalSupportFragment;
 import my.edu.fsktm.um.finalproject.R;
 
@@ -27,7 +29,7 @@ public class ForumTitle extends AppCompatActivity {
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
     ForumTitle context;
     RecyclerView background;
-    ImageButton IVReview,IVTechnical,IVHardware;
+    ImageButton IVReview,IVTechnical,IVHardware,IVSales,IVPictures;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -53,6 +55,14 @@ public class ForumTitle extends AppCompatActivity {
                     background.setVisibility(View.VISIBLE);
                     selectedFragment = new HardwareFragment();
                 }
+                else if (v == findViewById(R.id.iBSales)){
+                    background.setVisibility(View.VISIBLE);
+                    selectedFragment = new SalesFragment();
+                }
+                else if (v == findViewById(R.id.iBPictures)){
+                    background.setVisibility(View.VISIBLE);
+                    selectedFragment = new PictureFragment();
+                }
                 FragmentManager manager = getSupportFragmentManager();
                 FragmentTransaction transaction = manager.beginTransaction();
                 transaction.replace(R.id.fragment_container,selectedFragment);
@@ -63,9 +73,13 @@ public class ForumTitle extends AppCompatActivity {
         IVReview = (ImageButton)findViewById(R.id.iBReview);
         IVTechnical = (ImageButton)findViewById(R.id.iBTech);
         IVHardware = (ImageButton)findViewById(R.id.iBHardware);
+        IVSales = (ImageButton)findViewById(R.id.iBSales);
+        IVPictures = (ImageButton)findViewById(R.id.iBPictures);
         IVReview.setOnClickListener(listener);
         IVTechnical.setOnClickListener(listener);
         IVHardware.setOnClickListener(listener);
+        IVSales.setOnClickListener(listener);
+        IVPictures.setOnClickListener(listener);
 
         fabadd.setOnClickListener(new View.OnClickListener() {
             @Override
