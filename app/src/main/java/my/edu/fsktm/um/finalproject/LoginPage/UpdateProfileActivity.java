@@ -3,20 +3,27 @@ package my.edu.fsktm.um.finalproject.LoginPage;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+
+import my.edu.fsktm.um.finalproject.ForumPage.AddForum;
+import my.edu.fsktm.um.finalproject.ForumPage.ForumPage;
 import my.edu.fsktm.um.finalproject.MainMenuActivity;
 import my.edu.fsktm.um.finalproject.R;
 
+import android.content.ContentResolver;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Handler;
 import android.text.TextUtils;
 import android.view.View;
+import android.webkit.MimeTypeMap;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
@@ -30,6 +37,7 @@ import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.OnProgressListener;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 import com.theartofdev.edmodo.cropper.CropImage;
@@ -48,13 +56,14 @@ public class UpdateProfileActivity extends AppCompatActivity {
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
     private CollectionReference userRef = db.collection("Users_Profile");
     private FirebaseAuth mAuth;
-    //private DatabaseReference mDatabaseUsers;
-    //private StorageReference mStorageRef;
+    String holderLocation;
+    private StorageReference mStorageRef;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_update_profile);
+        mStorageRef = FirebaseStorage.getInstance().getReference();
 
         mAuth = FirebaseAuth.getInstance();
         //mDatabaseUsers = FirebaseDatabase.getInstance().getReference().child("Users_Profile");
@@ -80,15 +89,33 @@ public class UpdateProfileActivity extends AppCompatActivity {
                 final String name = profUserName.getText().toString().trim();
                 final String userID = mAuth.getCurrentUser().getUid();
                 if (!TextUtils.isEmpty(name) && mImageUri != null){
+                    final StorageReference fileReference = mStorageRef.child(System.currentTimeMillis()+ "." + getFileExtenstion(mImageUri));
                     final Map<String, Object> user_info = new HashMap<>();
                     user_info.put("name",name);
-                    user_info.put("image",mImageUri.toString());
-                    db.collection("Users_Profile").document(mAuth.getUid()).set(user_info).addOnCompleteListener(new OnCompleteListener<Void>() {
+                    fileReference.putFile(mImageUri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                         @Override
-                        public void onComplete(@NonNull Task<Void> task) {
-                            Toast.makeText(UpdateProfileActivity.this, "Successful", Toast.LENGTH_SHORT).show();
-                            Intent i = new Intent(UpdateProfileActivity.this, MainMenuActivity.class);
-                            startActivity(i);
+                        public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                            fileReference.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                                @Override
+                                public void onSuccess(Uri uri) {
+                                    String url = uri.toString();
+                                    holderLocation = url;
+                                    user_info.put("image",holderLocation);
+                                    db.collection("Users_Profile").document(mAuth.getUid()).set(user_info).addOnSuccessListener(new OnSuccessListener<Void>() {
+                                        @Override
+                                        public void onSuccess(Void aVoid) {
+                                            Toast.makeText(UpdateProfileActivity.this, "Successful", Toast.LENGTH_SHORT).show();
+                                            Intent i = new Intent(UpdateProfileActivity.this, MainMenuActivity.class);
+                                            startActivity(i);
+                                        }
+                                    });
+                                }
+                            });
+                        }
+                    }).addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception e) {
+                            Toast.makeText(UpdateProfileActivity.this,e.getMessage(),Toast.LENGTH_SHORT).show();
                         }
                     });
                 }
@@ -120,5 +147,11 @@ public class UpdateProfileActivity extends AppCompatActivity {
                 }
             }
         }
+    }
+    private String getFileExtenstion(Uri uri){
+        // Get type of an image
+        ContentResolver cR = getContentResolver();
+        MimeTypeMap mime = MimeTypeMap.getSingleton();
+        return mime.getExtensionFromMimeType(cR.getType(uri));
     }
 }
