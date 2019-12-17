@@ -4,18 +4,26 @@ import com.google.firebase.Timestamp;
 
 public class Messages {
     private String messages;
-    private String user;
+    private String email;
     private com.google.firebase.Timestamp timePosted;
     private String images;
 
     public Messages() {
     }
 
-    public Messages(String messages, String user, Timestamp timePosted, String images) {
+    public Messages(String messages, String email, Timestamp timePosted, String images) {
         this.messages = messages;
-        this.user = user;
+        this.email = email;
         this.timePosted = timePosted;
         this.images = images;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public String getImages() {
@@ -32,14 +40,6 @@ public class Messages {
 
     public void setMessages(String messages) {
         this.messages = messages;
-    }
-
-    public String getUser() {
-        return user;
-    }
-
-    public void setUser(String user) {
-        this.user = user;
     }
 
     public Timestamp getTimePosted() {

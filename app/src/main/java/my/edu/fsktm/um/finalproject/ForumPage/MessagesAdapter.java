@@ -19,10 +19,16 @@ import androidx.emoji.bundled.BundledEmojiCompatConfig;
 import androidx.emoji.text.EmojiCompat;
 import androidx.emoji.widget.EmojiTextView;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.squareup.picasso.Picasso;
 
@@ -36,8 +42,8 @@ public class MessagesAdapter extends FirestoreRecyclerAdapter<Messages, Messages
     FirebaseFirestore db = FirebaseFirestore.getInstance();
     MessagesAdapter context;
     Bundle extrasFromInterface;
+    FirebaseAuth mAuth;
     private ForumInterface mContext; //instance variable
-
 
     public MessagesAdapter(ForumInterface context, @NonNull FirestoreRecyclerOptions<Messages> options, Bundle bundle) {
         super(options);
@@ -46,20 +52,21 @@ public class MessagesAdapter extends FirestoreRecyclerAdapter<Messages, Messages
     }
 
     @Override
-    protected void onBindViewHolder(final MessagesHolder holder, int position, Messages model) {
+    protected void onBindViewHolder(final MessagesHolder holder, int position, final Messages model) {
+
         final int newContainerId = getUniqueId();
         context = this;
+        final String email = model.getEmail();
         holder.textViewMessages.setText(model.getMessages());
-        holder.textViewUser.setText(model.getUser());
+        holder.textViewUser.setText(model.getEmail());
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("MMMM dd yyyy, hh:mm a");
         String uncovertedTimeStamp = (model.getTimePosted().toDate().toString());
         String ConvertedTimeStamp = simpleDateFormat.format(new Date(uncovertedTimeStamp));
         holder.timeStamp.setText(ConvertedTimeStamp);
         holder.bAdd.setVisibility(View.GONE);
         holder.container.setVisibility(View.GONE);
-        if(model.getImages()!=null){
-            Picasso.get().load(model.getImages()).fit().centerCrop().into(holder.ivPicture);
-            Toast.makeText(mContext, model.getImages(), Toast.LENGTH_SHORT).show();
+        if(model.getImages()!=null && model.getImages() != ""){
+            Picasso.get().load(model.getImages()).fit().into(holder.ivPicture);
         }
         else{
             holder.ivPicture.setVisibility(View.GONE);
@@ -79,11 +86,11 @@ public class MessagesAdapter extends FirestoreRecyclerAdapter<Messages, Messages
                 AppCompatActivity activity = (AppCompatActivity)v.getContext();
                 Fragment replyFrag = new AddReplyFragment();
                 Bundle extras = new Bundle();
-                extras.putString("USER","Test_User");
+                extras.putString("EMAIL",email);
                 replyFrag.setArguments(extras);
                 replyFrag.setArguments(extrasFromInterface);
                 activity.getSupportFragmentManager().beginTransaction()
-                        .replace(newContainerId,replyFrag,"first").addToBackStack(null).commit();
+                        .replace(newContainerId,replyFrag,"first").addToBackStack("second").commit();
             }
         });
         holder.container.setVisibility(View.VISIBLE);
@@ -107,6 +114,7 @@ public class MessagesAdapter extends FirestoreRecyclerAdapter<Messages, Messages
         EmojiTextView textViewUser;
         TextView timeStamp;
         Button bAdd;
+        Button bCancel;
         ImageView ivPicture;
 
         FrameLayout container;
@@ -118,6 +126,7 @@ public class MessagesAdapter extends FirestoreRecyclerAdapter<Messages, Messages
             bAdd = itemView.findViewById(R.id.bAdd);
             container = itemView.findViewById(R.id.replyFragment);
             ivPicture = itemView.findViewById(R.id.ivPictures);
+            bCancel = itemView.findViewById(R.id.bCancel);
         }
     }
 

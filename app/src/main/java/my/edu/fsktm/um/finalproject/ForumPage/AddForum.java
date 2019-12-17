@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Activity;
 import android.content.ContentResolver;
 import android.content.Intent;
 import android.database.Cursor;
@@ -25,11 +26,14 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.Timestamp;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.OnProgressListener;
@@ -40,6 +44,7 @@ import com.squareup.picasso.Picasso;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
@@ -51,6 +56,8 @@ public class AddForum extends AppCompatActivity {
     private Uri mImageUri = null;
     private final int PICK_IMAGE_REQUEST = 71;
     private StorageReference mStorageRef;
+    private ArrayList<Uri> image_urls;
+    FirebaseAuth mAuth;
     String holderLocation;
     FirebaseFirestore db = FirebaseFirestore.getInstance();
     Spinner typeSpinner;
@@ -59,7 +66,7 @@ public class AddForum extends AppCompatActivity {
     EditText etAddPost;
     Button bAdd;
     String doc_id = "";
-    String username = "";
+    String email = "";
     ImageView ivAttach;
     ImageView ivReview;
     TextView tvAttach;
@@ -69,9 +76,11 @@ public class AddForum extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_forum);
 
+        final String usern;
+        usern = mAuth.getInstance().getCurrentUser().getUid();
+
         Intent intent = getIntent();
         Bundle extras = intent.getExtras();
-        username = extras.getString("USER");
 
         typeSpinner = (Spinner)findViewById(R.id.sType);
         etTitle = (EditText)findViewById(R.id.etTitle);
@@ -88,6 +97,19 @@ public class AddForum extends AppCompatActivity {
                 android.R.layout.simple_list_item_1,getResources().getStringArray(R.array.Type));
         myAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         typeSpinner.setAdapter(myAdapter);
+
+        DocumentReference documentReference = db.collection("Users_Profile").document(usern);
+        documentReference.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                if(task.isSuccessful()){
+                    DocumentSnapshot documentSnapshot = task.getResult();
+                    if(documentSnapshot!=null){
+                        email = documentSnapshot.getString("email");
+                    }
+                }
+            }
+        });
 
         tvAttach.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -125,14 +147,25 @@ public class AddForum extends AppCompatActivity {
                 forum.put("Title",title);
                 forum.put("Description",description);
                 forum.put("DatePosted",now);
+                forum.put("Email",email);
 
                 //Array for add post
                 final Map<String, Object> messages = new HashMap<>();
                 messages.put("messages",post);
-                messages.put("user",username);
+                messages.put("email",email);
                 messages.put("timePosted",now);
                 if(mImageUri==null) {
                     messages.put("images", "");
+                    db.collection(type).add(forum).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+                        @Override
+                        public void onSuccess(DocumentReference documentReference) {
+                            doc_id = documentReference.getId();
+                            db.collection(type).document(doc_id).collection("messages").add(messages);
+                            Toast.makeText(getApplicationContext(),"Success Adding",Toast.LENGTH_LONG).show();
+                            Intent intent = new Intent(AddForum.this,ForumPage.class);
+                            startActivity(intent);
+                        }
+                    });
                 }
 
                 final ContentResolver cR = getContentResolver();
@@ -181,18 +214,6 @@ public class AddForum extends AppCompatActivity {
                         }
                     });
                 }
-                /*messages.put("images",holderLocation);
-                Handler handler = new Handler();
-                db.collection(type).add(forum).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
-                    @Override
-                    public void onSuccess(DocumentReference documentReference) {
-                        doc_id = documentReference.getId();
-                        db.collection(type).document(doc_id).collection("messages").add(messages);
-                        Toast.makeText(getApplicationContext(),"Success Adding",Toast.LENGTH_LONG).show();
-                        Intent intent = new Intent(AddForum.this,ForumTitle.class);
-                        startActivity(intent);
-                    }
-                });*/
             }
         });
 
@@ -220,43 +241,6 @@ public class AddForum extends AppCompatActivity {
         ContentResolver cR = getContentResolver();
         MimeTypeMap mime = MimeTypeMap.getSingleton();
         return mime.getExtensionFromMimeType(cR.getType(uri));
-    }
-
-    private String uploadFile(){
-        final ContentResolver cR = getContentResolver();
-        if(mImageUri!=null){
-            final StorageReference fileReference = mStorageRef.child(System.currentTimeMillis()+ "." + getFileExtenstion(mImageUri));
-            fileReference.putFile(mImageUri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
-                @Override
-                public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                    Task<Uri> downloadUrl = fileReference.getDownloadUrl();
-                    holderLocation = downloadUrl.toString();
-                    Handler handler = new Handler();
-                    handler.postDelayed(new Runnable() {
-                        @Override
-                        public void run() {
-                            mProgressBar.setProgress(0);
-                        }
-                    },5000);
-                }
-            }).addOnFailureListener(new OnFailureListener() {
-                @Override
-                public void onFailure(@NonNull Exception e) {
-                    Toast.makeText(AddForum.this,e.getMessage(),Toast.LENGTH_SHORT).show();
-                }
-            }).addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>() {
-                @Override
-                public void onProgress(UploadTask.TaskSnapshot taskSnapshot) {
-                    // update progress bar with progress
-                    double progress = (100 * taskSnapshot.getBytesTransferred()/ taskSnapshot.getTotalByteCount());
-                    mProgressBar.setProgress((int)progress);
-                }
-            });
-            return holderLocation;
-        }
-        else{
-            return null;
-        }
     }
     private String queryName(ContentResolver resolver, Uri uri) {
         Cursor returnCursor =

@@ -1,5 +1,6 @@
 package my.edu.fsktm.um.finalproject.ForumPage;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
@@ -11,9 +12,15 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageButton;
+import android.widget.TextView;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 
@@ -25,8 +32,9 @@ import my.edu.fsktm.um.finalproject.ForumPage.Fragment.TechnicalSupportFragment;
 import my.edu.fsktm.um.finalproject.R;
 
 public class ForumPage extends AppCompatActivity {
-
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
+    FirebaseAuth mAuth;
+    String email;
     ForumPage context;
     RecyclerView background;
     ImageButton IVReview,IVTechnical,IVHardware,IVSales,IVPictures;
@@ -34,6 +42,10 @@ public class ForumPage extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_forum_title);
+
+        final String usern;
+        usern = mAuth.getInstance().getCurrentUser().getUid();
+
         FloatingActionButton fabadd = (FloatingActionButton) findViewById(R.id.fabAdd);
         background = (RecyclerView)findViewById(R.id.my_recycler_view);
         background.setVisibility(View.GONE);
@@ -70,6 +82,7 @@ public class ForumPage extends AppCompatActivity {
             }
 
         };
+
         IVReview = (ImageButton)findViewById(R.id.iBReview);
         IVTechnical = (ImageButton)findViewById(R.id.iBTech);
         IVHardware = (ImageButton)findViewById(R.id.iBHardware);
@@ -81,13 +94,12 @@ public class ForumPage extends AppCompatActivity {
         IVSales.setOnClickListener(listener);
         IVPictures.setOnClickListener(listener);
 
+
+
         fabadd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(ForumPage.this,AddForum.class);
-                Bundle extras = new Bundle();
-                extras.putString("USER","Test_User");
-                intent.putExtras(extras);
                 startActivity(intent);
             }
         });

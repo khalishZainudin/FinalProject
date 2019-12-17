@@ -15,7 +15,11 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
@@ -58,7 +62,7 @@ public class ReviewFragment extends Fragment {
                 Forum forum = documentSnapshot.toObject(Forum.class);
                 String title = forum.getTitle();
                 String description = forum.getDescription();
-                String username = forum.getUser();
+                String email = forum.getEmail();
                 SimpleDateFormat simpleDateFormat = new SimpleDateFormat("MMMM dd yyyy, hh:mm a");
                 String uncovertedTimeStamp = (forum.getDatePosted().toDate().toString());
                 String ConvertedTimeStamp = simpleDateFormat.format(new Date(uncovertedTimeStamp));
@@ -69,7 +73,7 @@ public class ReviewFragment extends Fragment {
                 extras.putString("FORUM_ID",id);
                 extras.putString("TITLE",title);
                 extras.putString("DESCRIPTION",description);
-                extras.putString("USER",username);
+                extras.putString("EMAIL",email);
                 extras.putString("TIME_POSTED",ConvertedTimeStamp);
                 intent.putExtras(extras);
                 startActivity(intent);

@@ -56,7 +56,7 @@ public class SalesFragment extends Fragment {
                 Forum forum = documentSnapshot.toObject(Forum.class);
                 String title = forum.getTitle();
                 String description = forum.getDescription();
-                String username = forum.getUser();
+                String email = forum.getEmail();
                 SimpleDateFormat simpleDateFormat = new SimpleDateFormat("MMMM dd yyyy, hh:mm a");
                 String uncovertedTimeStamp = (forum.getDatePosted().toDate().toString());
                 String ConvertedTimeStamp = simpleDateFormat.format(new Date(uncovertedTimeStamp));
@@ -67,7 +67,7 @@ public class SalesFragment extends Fragment {
                 extras.putString("FORUM_ID",id);
                 extras.putString("TITLE",title);
                 extras.putString("DESCRIPTION",description);
-                extras.putString("USER",username);
+                extras.putString("EMAIL",email);
                 extras.putString("TIME_POSTED",ConvertedTimeStamp);
                 intent.putExtras(extras);
                 startActivity(intent);

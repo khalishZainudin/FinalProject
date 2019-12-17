@@ -1,5 +1,6 @@
 package my.edu.fsktm.um.finalproject.ForumPage;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.emoji.bundled.BundledEmojiCompatConfig;
 import androidx.emoji.text.EmojiCompat;
@@ -11,7 +12,12 @@ import android.os.Bundle;
 import android.widget.TextView;
 
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
 
@@ -23,21 +29,23 @@ public class ForumInterface extends AppCompatActivity {
     private CollectionReference forumMessages;
     private MessagesAdapter adapter;
 
-
+    String forum_email;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_forum_interface);
+
         EmojiCompat.init(new BundledEmojiCompatConfig(ForumInterface.this));
         Intent intent = getIntent();
         Bundle extras = intent.getExtras();
 
+        String forum_email = extras.getString("EMAIL");
         String forum_title = extras.getString("TITLE");
         String forum_type = extras.getString("FORUM_TYPE");
         String forum_id = extras.getString("FORUM_ID");
         String forum_description = extras.getString("DESCRIPTION");
-        String forum_username = extras.getString("USER");
         String forum_time_posted = extras.getString("TIME_POSTED");
+
 
         db = FirebaseFirestore.getInstance();
         forumInformation = db.collection(forum_type).document(forum_id).collection(forum_title);
@@ -50,7 +58,7 @@ public class ForumInterface extends AppCompatActivity {
 
         test.setText(forum_title);
         description.setText(forum_description);
-        username.setText(forum_username);
+        username.setText(forum_email);
         timePosted.setText(forum_time_posted);
 
         setUpRecyclerView(extras);
