@@ -64,25 +64,32 @@ public class ForumInterface extends AppCompatActivity {
         forum_description = extras.getString("DESCRIPTION");
         forum_time_posted = extras.getString("TIME_POSTED");
 
-
+        // Create a string to hold the value of user id
         final String usern;
         usern = mAuth.getInstance().getCurrentUser().getUid();
 
         db = FirebaseFirestore.getInstance();
+
+        // Get the data of forum that user select from previous activity
         forumInformation = db.collection(forum_type).document(forum_id).collection(forum_title);
+
+        // Get the data of messages in that forum
         forumMessages = db.collection(forum_type).document(forum_id).collection("messages");
 
+        //  Assigning
         TextView description = (TextView)findViewById(R.id.tvForumDesc);
         TextView test = (TextView)findViewById(R.id.tvForumTitle);
         TextView username = (TextView)findViewById(R.id.tvForumUser);
         TextView timePosted = (TextView)findViewById(R.id.tvTimePosted);
         ImageButton ibDelete = (ImageButton)findViewById(R.id.ibDelete);
 
+        // Set the information received from previous class to the text view in the layout
         test.setText(forum_title);
         description.setText(forum_description);
         username.setText(forum_email);
         timePosted.setText(forum_time_posted);
 
+        // Make a function to get email of current user from the cloud firestore
         DocumentReference documentReference = db.collection("Users_Profile").document(usern);
         documentReference.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
             @Override
@@ -96,8 +103,10 @@ public class ForumInterface extends AppCompatActivity {
             }
         });
 
+
         setUpRecyclerView(extras);
 
+        // Make a delete function
         ibDelete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -115,6 +124,7 @@ public class ForumInterface extends AppCompatActivity {
         });
     }
 
+    //
     private void setUpRecyclerView(Bundle bundle){
         Query query = forumMessages.orderBy("timePosted",Query.Direction.ASCENDING);
         FirestoreRecyclerOptions<Messages> options = new FirestoreRecyclerOptions.Builder<Messages>()
