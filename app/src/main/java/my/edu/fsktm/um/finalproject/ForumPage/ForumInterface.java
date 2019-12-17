@@ -28,20 +28,21 @@ import com.google.firebase.firestore.Query;
 import my.edu.fsktm.um.finalproject.R;
 
 public class ForumInterface extends AppCompatActivity {
+
+    // Create Firebase data type to make use of it
     private FirebaseFirestore db;
     private CollectionReference forumInformation;
     private CollectionReference forumMessages;
     private MessagesAdapter adapter;
     private FirebaseAuth mAuth;
 
+    // Create a string
     String forum_email;
     String forum_title;
     String forum_type;
     String forum_id;
     String forum_description;
     String forum_time_posted;
-
-
     String realEmail;
 
     @Override
@@ -49,7 +50,10 @@ public class ForumInterface extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_forum_interface);
 
+        // To allow emoji used in the interface
         EmojiCompat.init(new BundledEmojiCompatConfig(ForumInterface.this));
+
+        // Receiving all the data from previous class in java
         Intent intent = getIntent();
         Bundle extras = intent.getExtras();
 

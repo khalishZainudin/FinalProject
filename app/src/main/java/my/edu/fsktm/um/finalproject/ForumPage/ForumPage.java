@@ -32,25 +32,44 @@ import my.edu.fsktm.um.finalproject.ForumPage.Fragment.TechnicalSupportFragment;
 import my.edu.fsktm.um.finalproject.R;
 
 public class ForumPage extends AppCompatActivity {
+    // Declare database of Cloud Firestore
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
-    FirebaseAuth mAuth;
+    // Declare authentication of Firebase
+    private FirebaseAuth mAuth;
+
+    // Declare email
     String email;
+
+    // Declare context of ForumPage.java
     ForumPage context;
+
+    // Declare RecyclerView of ForumPage.java
     RecyclerView background;
+
+    // Declare of image button
     ImageButton IVReview,IVTechnical,IVHardware,IVSales,IVPictures;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_forum_title);
 
+        // Create a string to hold the value of current user id
         final String usern;
         usern = mAuth.getInstance().getCurrentUser().getUid();
 
+        // Create a floating action button and identifying it with the id
         FloatingActionButton fabadd = (FloatingActionButton) findViewById(R.id.fabAdd);
+
+        // Identifying the background with the id
         background = (RecyclerView)findViewById(R.id.my_recycler_view);
+
+        // Don't show the background before the user click any type
         background.setVisibility(View.GONE);
+
         context = this;
 
+        // Turn the background into visible and show the fragment of user's choice
         View.OnClickListener listener = new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -75,6 +94,8 @@ public class ForumPage extends AppCompatActivity {
                     background.setVisibility(View.VISIBLE);
                     selectedFragment = new PictureFragment();
                 }
+
+                // Transaction of fragment
                 FragmentManager manager = getSupportFragmentManager();
                 FragmentTransaction transaction = manager.beginTransaction();
                 transaction.replace(R.id.fragment_container,selectedFragment);
@@ -83,18 +104,19 @@ public class ForumPage extends AppCompatActivity {
 
         };
 
+        // Assigning
         IVReview = (ImageButton)findViewById(R.id.iBReview);
         IVTechnical = (ImageButton)findViewById(R.id.iBTech);
         IVHardware = (ImageButton)findViewById(R.id.iBHardware);
         IVSales = (ImageButton)findViewById(R.id.iBSales);
         IVPictures = (ImageButton)findViewById(R.id.iBPictures);
+
+        // Give each Image View a listener
         IVReview.setOnClickListener(listener);
         IVTechnical.setOnClickListener(listener);
         IVHardware.setOnClickListener(listener);
         IVSales.setOnClickListener(listener);
         IVPictures.setOnClickListener(listener);
-
-
 
         fabadd.setOnClickListener(new View.OnClickListener() {
             @Override

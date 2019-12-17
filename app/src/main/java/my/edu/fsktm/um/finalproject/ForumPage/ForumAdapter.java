@@ -31,32 +31,42 @@ public class ForumAdapter extends FirestoreRecyclerAdapter<Forum,ForumAdapter.Fo
 
     @Override
     public void onBindViewHolder(ForumHolder forumHolder, int i, Forum forum) {
+        // Get the current forum information and set it to the text view in layout
         forumHolder.textViewTitle.setText(forum.getTitle());
         forumHolder.textViewDescription.setText(forum.getDescription());
+
+        // Create date format for easy to read firebase timestamp
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("MMMM dd yyyy, hh:mm a");
         String uncovertedTimeStamp = (forum.getDatePosted().toDate().toString());
         String ConvertedTimeStamp = simpleDateFormat.format(new Date(uncovertedTimeStamp));
-        forumHolder.timeStamp.setText(ConvertedTimeStamp);
 
+        // Set the timestamp in layout the we retrieve from firebase
+        forumHolder.timeStamp.setText(ConvertedTimeStamp);
     }
 
     @NonNull
     @Override
     public ForumHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+
+        // Inflate the view in adapter
         android.view.View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.cardviewforumtitle,parent,false);
+
+        // To enable Emoji in context
         EmojiCompat.init(new BundledEmojiCompatConfig(v.getContext()));
         return new ForumHolder(v);
 
     }
     class ForumHolder extends RecyclerView.ViewHolder{
 
+        // Declare the Palette
         EmojiTextView textViewTitle;
         EmojiTextView textViewDescription;
         TextView timeStamp;
-        ImageView ivPicture;
 
         public ForumHolder(View itemView) {
             super(itemView);
+
+            // Assign declaration of Palette to the layout
             textViewTitle = itemView.findViewById(R.id.tvTitle);
             textViewDescription = itemView.findViewById(R.id.tvDescription);
             timeStamp = itemView.findViewById(R.id.tvTimestamp);
@@ -65,8 +75,11 @@ public class ForumAdapter extends FirestoreRecyclerAdapter<Forum,ForumAdapter.Fo
                 @Override
                 public void onClick(View v) {
                     int position = getAdapterPosition();
+
                     // NO_POSITION to prevent app crash when click -1 index
                     if(position != RecyclerView.NO_POSITION && listener !=null ){
+
+                        // Get the item position in recycler view
                         listener.onItemClick(getSnapshots().getSnapshot(position),position);
                     }
                 }
