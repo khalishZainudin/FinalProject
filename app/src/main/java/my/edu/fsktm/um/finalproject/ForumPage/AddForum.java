@@ -209,6 +209,8 @@ public class AddForum extends AppCompatActivity {
         });
 
     }
+
+    // Picking image function
     private void chooseImage() {
         Intent intent = new Intent();
         intent.setType("image/*");

@@ -124,7 +124,7 @@ public class ForumInterface extends AppCompatActivity {
         });
     }
 
-    //
+    // Setting up the recyclerview
     private void setUpRecyclerView(Bundle bundle){
         Query query = forumMessages.orderBy("timePosted",Query.Direction.ASCENDING);
         FirestoreRecyclerOptions<Messages> options = new FirestoreRecyclerOptions.Builder<Messages>()
