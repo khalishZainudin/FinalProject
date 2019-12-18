@@ -54,6 +54,8 @@ public class ForumPage extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_forum_title);
 
+        getSupportActionBar().hide();
+
         // Create a string to hold the value of current user id
         final String usern;
         usern = mAuth.getInstance().getCurrentUser().getUid();

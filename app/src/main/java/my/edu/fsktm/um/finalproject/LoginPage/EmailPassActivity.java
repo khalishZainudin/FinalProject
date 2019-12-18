@@ -29,7 +29,6 @@ public class EmailPassActivity extends BaseActivity implements View.OnClickListe
     private TextView mDetailTextView;
     private EditText mEmailField;
     private EditText mPasswordField;
-    private Button button;
 
     // [START declare_auth]
     private FirebaseAuth mAuth;
@@ -51,6 +50,7 @@ public class EmailPassActivity extends BaseActivity implements View.OnClickListe
         findViewById(R.id.emailCreateAccountButton).setOnClickListener(this);
         findViewById(R.id.signOutButton).setOnClickListener(this);
         findViewById(R.id.verifyEmailButton).setOnClickListener(this);
+        findViewById(R.id.buttonReset).setOnClickListener(this);
 
         // button next menu
         findViewById(R.id.goToMainMenu).setOnClickListener(this);
@@ -212,6 +212,7 @@ public class EmailPassActivity extends BaseActivity implements View.OnClickListe
             findViewById(R.id.titleText).setVisibility(View.GONE);
             findViewById(R.id.signedInButtons).setVisibility(View.VISIBLE);
             findViewById(R.id.goToMainMenu).setVisibility(View.VISIBLE);
+            findViewById(R.id.buttonReset).setVisibility(View.GONE);
 
             findViewById(R.id.verifyEmailButton).setEnabled(!user.isEmailVerified());
         } else {
@@ -222,6 +223,7 @@ public class EmailPassActivity extends BaseActivity implements View.OnClickListe
             findViewById(R.id.emailPasswordFields).setVisibility(View.VISIBLE);
             findViewById(R.id.signedInButtons).setVisibility(View.GONE);
             findViewById(R.id.goToMainMenu).setVisibility(View.GONE);
+            findViewById(R.id.buttonReset).setVisibility(View.VISIBLE);
         }
     }
 
@@ -238,6 +240,9 @@ public class EmailPassActivity extends BaseActivity implements View.OnClickListe
             sendEmailVerification();
         } else if (i == R.id.goToMainMenu){
             Intent intent = new Intent (this, MainMenuActivity.class);
+            startActivity(intent);
+        } else if (i == R.id.buttonReset){
+            Intent intent = new Intent (this, ResetPasswordActivity.class);
             startActivity(intent);
         }
     }

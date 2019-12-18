@@ -179,13 +179,13 @@
 
                         <TextView
                             android:id="@+id/textView6"
-                            android:layout_width="wrap_content"
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
                             android:fontFamily="sans-serif-smallcaps"
                             android:gravity="center"
-                            android:textColor="@color/grey_100"
-                            android:text="Pictures" />
+                            android:text="Pictures"
+                            android:textColor="@color/grey_100" />
                     </LinearLayout>
 
                 </LinearLayout>

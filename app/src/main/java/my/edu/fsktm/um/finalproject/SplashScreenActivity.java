@@ -2,6 +2,7 @@ package my.edu.fsktm.um.finalproject;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
+import my.edu.fsktm.um.finalproject.LoginPage.EmailPassActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -47,7 +48,7 @@ public class SplashScreenActivity extends AppCompatActivity {
                 e.printStackTrace();
             }
 
-            Intent intent = new Intent(SplashScreenActivity.this, MainActivity.class);
+            Intent intent = new Intent(SplashScreenActivity.this, EmailPassActivity.class);
             startActivity(intent);
         }
     }

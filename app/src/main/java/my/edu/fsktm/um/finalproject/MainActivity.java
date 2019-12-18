@@ -33,7 +33,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
     // HELLO WORLD FROM KHALISH
-
     public void goToLoginPage(View v) {
         Intent intent = new Intent(this, EmailPassActivity.class);
         startActivity(intent);

@@ -29,7 +29,6 @@ public class MainMenuActivity extends AppCompatActivity {
         animationDrawable.setEnterFadeDuration(4500);
         animationDrawable.setExitFadeDuration(4500);
         animationDrawable.start();
-
     }
 
 

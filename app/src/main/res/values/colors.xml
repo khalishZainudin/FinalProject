@@ -26,4 +26,6 @@
     <color name="compatible">#00c976</color>
     <color name="incompatible">#c40000</color>
 
+    <color name="colorTransparentWhite">#cccccc</color>
+
 </resources>

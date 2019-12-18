@@ -5,7 +5,7 @@
     android:id="@+id/main_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/grey_100"
+    android:background="@color/white"
     android:orientation="vertical"
     android:weightSum="4"
     tools:context=".LoginPage.EmailPassActivity">
@@ -45,15 +45,22 @@
 
         <Button
             android:id="@+id/goToMainMenu"
-            android:layout_width="match_parent"
+            style="@style/Widget.AppCompat.Button.Colored"
+            android:theme="@style/ThemeOverlay.MyDarkButton"
+            android:layout_width="300dp"
             android:layout_height="wrap_content"
             android:text="Main Menu" />
 
-        <Button
-            android:id="@+id/button"
+        <TextView
+            android:id="@+id/buttonReset"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Button" />
+            android:fontFamily="@font/merienda_one"
+            android:text="Forgot your password?"
+            android:textColor="@color/grey_600"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:textStyle="italic" />
 
     </LinearLayout>
 
@@ -111,11 +118,11 @@
             <Button
                 android:id="@+id/emailCreateAccountButton"
                 style="@style/Widget.AppCompat.Button.Colored"
+                android:theme="@style/ThemeOverlay.MyDarkButton"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="@string/create_account"
-                android:theme="@style/ThemeOverlay.MyDarkButton" />
+                android:text="@string/create_account" />
         </LinearLayout>
 
         <LinearLayout
