@@ -50,14 +50,14 @@ dependencies {
     implementation 'com.google.android.material:material:1.0.0'
     implementation "com.firebaseui:firebase-ui-firestore:6.1.0"
     implementation "androidx.recyclerview:recyclerview:1.1.0"
-    implementation 'com.android.support:multidex:1.0.3'
+    implementation 'androidx.multidex:multidex:2.0.1'
 
     // crop image
     implementation 'com.squareup.picasso:picasso:2.71828'
     implementation 'com.theartofdev.edmodo:android-image-cropper:2.5.+'
 
     // part amir
-    implementation 'androidx.appcompat:appcompat:1.0.0'
+    implementation 'androidx.appcompat:appcompat:1.1.0'
     implementation 'androidx.cardview:cardview:1.0.0'
     implementation 'com.muddzdev:styleabletoast:2.2.0'
 }

@@ -37,13 +37,13 @@ public class ForumInterface extends AppCompatActivity {
     private FirebaseAuth mAuth;
 
     // Create a string
-    String forum_email;
-    String forum_title;
-    String forum_type;
-    String forum_id;
-    String forum_description;
-    String forum_time_posted;
-    String realEmail;
+    public String forum_email;
+    public String forum_title;
+    public String forum_type;
+    public String forum_id;
+    public String forum_description;
+    public String forum_time_posted;
+    public String realEmail;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -124,6 +124,14 @@ public class ForumInterface extends AppCompatActivity {
         });
     }
 
+    public String getForum_type() {
+        return forum_type;
+    }
+
+    public String getForum_id() {
+        return forum_id;
+    }
+
     // Setting up the recyclerview
     private void setUpRecyclerView(Bundle bundle){
         Query query = forumMessages.orderBy("timePosted",Query.Direction.ASCENDING);
@@ -131,7 +139,7 @@ public class ForumInterface extends AppCompatActivity {
                 .setQuery(query,Messages.class)
                 .build();
 
-        adapter = new MessagesAdapter(this,options,bundle);
+        adapter = new MessagesAdapter(this,options,bundle,forum_type,forum_id);
 
         RecyclerView recyclerView = findViewById(R.id.my_recycler_view_messages);
         recyclerView.setHasFixedSize(true);

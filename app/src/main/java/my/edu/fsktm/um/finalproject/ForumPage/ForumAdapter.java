@@ -59,8 +59,8 @@ public class ForumAdapter extends FirestoreRecyclerAdapter<Forum,ForumAdapter.Fo
     class ForumHolder extends RecyclerView.ViewHolder{
 
         // Declare the Palette
-        EmojiTextView textViewTitle;
-        EmojiTextView textViewDescription;
+        TextView textViewTitle;
+        TextView textViewDescription;
         TextView timeStamp;
 
         public ForumHolder(View itemView) {
