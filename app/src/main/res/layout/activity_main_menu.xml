@@ -164,7 +164,7 @@
                 android:outlineAmbientShadowColor="@color/grey_800"
                 android:outlineProvider="none"
                 android:outlineSpotShadowColor="#000000"
-                app:cardBackgroundColor="@color/white"
+                app:cardBackgroundColor="@color/transparent"
                 app:cardCornerRadius="20dp"
                 android:layout_gravity="center_horizontal">
 
@@ -179,14 +179,14 @@
                         android:layout_gravity="center_horizontal"
                         android:layout_marginTop="10dp"
                         android:layout_marginBottom="-5dp"
-                        android:src="@drawable/ic_forum_black_24dp" />
+                        android:src="@drawable/ic_bottleneck" />
 
                     <Button
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:background="#00FFFFFF"
                         android:onClick="goToForumPage"
-                        android:text="Forum Page"
+                        android:text="Bottleneck Calculator"
                         android:textColor="@color/black"
                         android:textSize="20sp"
                         android:textStyle="bold" />
@@ -219,14 +219,14 @@
                         android:layout_gravity="center_horizontal"
                         android:layout_marginTop="10dp"
                         android:layout_marginBottom="-5dp"
-                        android:src="@drawable/ic_forum_black_24dp" />
+                        android:src="@drawable/ic_psu_calculator" />
 
                     <Button
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:background="#00FFFFFF"
                         android:onClick="goToForumPage"
-                        android:text="Forum Page"
+                        android:text="PSU Calculator"
                         android:textColor="@color/black"
                         android:textSize="20sp"
                         android:textStyle="bold" />
@@ -259,14 +259,14 @@
                         android:layout_gravity="center_horizontal"
                         android:layout_marginTop="10dp"
                         android:layout_marginBottom="-5dp"
-                        android:src="@drawable/ic_forum_black_24dp" />
+                        android:src="@drawable/ic_home_page" />
 
                     <Button
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:background="#00FFFFFF"
                         android:onClick="goToForumPage"
-                        android:text="Forum Page"
+                        android:text="Home Page"
                         android:textColor="@color/black"
                         android:textSize="20sp"
                         android:textStyle="bold" />

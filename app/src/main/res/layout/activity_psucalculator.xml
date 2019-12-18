@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".PSUCalculatorPage.PSUCalculatorActivity">
+
+    <TextView
+        android:id="@+id/Selectcomponent"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:gravity="center"
+        android:textColor="@color/colorPrimaryDark"
+        android:text="Select Your Component!"
+        android:textSize="25sp" />
+
+
+    <Space
+        android:id="@+id/space1"
+        android:layout_width="30dp"
+        android:layout_height="40dp"
+        android:layout_centerInParent="false"
+        android:layout_centerHorizontal="false"
+        android:layout_marginTop="100dp"
+        android:gravity="center"/>
+
+    <TextView
+        android:id="@+id/textCPU"
+        android:layout_width="150dp"
+        android:layout_height="40dp"
+        android:layout_centerInParent="false"
+        android:layout_centerHorizontal="false"
+        android:layout_marginTop="100dp"
+        android:layout_toRightOf="@id/space1"
+        android:gravity="center|right"
+        android:text="CPU Brand: "
+        android:textSize="20sp" />
+
+    <Spinner
+        android:id="@+id/spincpu"
+        android:layout_width="154dp"
+        android:layout_height="41dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="100dp"
+        android:layout_toRightOf="@id/textCPU"
+        android:background="@color/colorAccent"
+        android:entries="@array/CPU"
+        android:textSize="20sp" />
+
+    <Space
+        android:id="@+id/space2"
+        android:layout_width="30dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="200dp"
+        android:gravity="center" />
+
+    <TextView
+        android:id="@+id/textmotherboard"
+        android:layout_width="150dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="170dp"
+        android:layout_toRightOf="@id/space2"
+        android:gravity="center|right"
+        android:text="Motherboard: "
+        android:textSize="20sp" />
+
+    <Spinner
+        android:id="@+id/spinnermotherboard"
+        android:layout_width="154dp"
+        android:layout_height="41dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="170dp"
+        android:layout_toRightOf="@id/textmotherboard"
+        android:background="@color/colorAccent"
+        android:entries="@array/Motherboard"
+        android:textSize="20sp" />
+
+    <Space
+        android:id="@+id/space3"
+        android:layout_width="30dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="270dp"
+        android:gravity="center" />
+
+    <TextView
+        android:id="@+id/textRAM"
+        android:layout_width="150dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="240dp"
+        android:layout_toRightOf="@id/space3"
+        android:gravity="center|right"
+        android:text="RAM: "
+        android:textSize="20sp" />
+
+
+    <Spinner
+        android:id="@+id/spinnerRAM"
+        android:layout_width="154dp"
+        android:layout_height="40dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="240dp"
+        android:layout_toRightOf="@id/textRAM"
+        android:background="@color/colorAccent"
+        android:entries="@array/RAM"
+        android:textSize="20sp" />
+
+    <Space
+        android:id="@+id/space4"
+        android:layout_width="30dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="300dp"
+        android:gravity="center"
+        android:text="SSD :" />
+
+    <TextView
+        android:id="@+id/text"
+        android:layout_width="150dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="310dp"
+        android:layout_toRightOf="@id/space4"
+        android:gravity="center|right"
+        android:text="SSD: "
+        android:textSize="20sp" />
+
+    <Spinner
+        android:id="@+id/spinnerSSD"
+        android:layout_width="154dp"
+        android:layout_height="40dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="310dp"
+        android:layout_toRightOf="@id/text"
+        android:background="@color/colorAccent"
+        android:entries="@array/SSD"
+        android:textSize="20sp" />
+
+    <TextView
+        android:id="@+id/wattage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="400dp"
+        android:gravity="center"
+        android:text="Your Recommended PSU wattage is:"
+        android:textColor="@color/colorPrimary"
+        android:textSize="20sp" />
+
+
+
+</RelativeLayout>

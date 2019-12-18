@@ -1,9 +1,11 @@
 package my.edu.fsktm.um.finalproject;
 
 import androidx.appcompat.app.AppCompatActivity;
+import my.edu.fsktm.um.finalproject.Bottleneck.BottleneckActivity;
 import my.edu.fsktm.um.finalproject.CompatibilityPage.CompatibleMainActivity;
 import my.edu.fsktm.um.finalproject.ForumPage.ForumPage;
 import my.edu.fsktm.um.finalproject.LoginPage.UpdateProfileActivity;
+import my.edu.fsktm.um.finalproject.PSUCalculatorPage.PSUCalculatorActivity;
 
 import android.content.Intent;
 import android.graphics.drawable.AnimationDrawable;
@@ -44,6 +46,16 @@ public class MainMenuActivity extends AppCompatActivity {
 
     public void goToCompatible(View view) {
         Intent intent = new Intent(this, CompatibleMainActivity.class);
+        startActivity(intent);
+    }
+
+    public void goToPSUCalculator(View view) {
+        Intent intent = new Intent(this, PSUCalculatorActivity.class);
+        startActivity(intent);
+    }
+
+    public void goToBottleneck(View view) {
+        Intent intent = new Intent(this, BottleneckActivity.class);
         startActivity(intent);
     }
 }
