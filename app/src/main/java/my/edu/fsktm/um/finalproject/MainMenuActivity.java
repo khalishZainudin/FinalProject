@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import my.edu.fsktm.um.finalproject.Bottleneck.BottleneckActivity;
 import my.edu.fsktm.um.finalproject.CompatibilityPage.CompatibleMainActivity;
 import my.edu.fsktm.um.finalproject.ForumPage.ForumPage;
+import my.edu.fsktm.um.finalproject.LoginPage.EmailPassActivity;
 import my.edu.fsktm.um.finalproject.LoginPage.UpdateProfileActivity;
 import my.edu.fsktm.um.finalproject.PSUCalculatorPage.PSUCalculatorActivity;
 
@@ -56,6 +57,11 @@ public class MainMenuActivity extends AppCompatActivity {
 
     public void goToBottleneck(View view) {
         Intent intent = new Intent(this, BottleneckActivity.class);
+        startActivity(intent);
+    }
+
+    public void goToLogin(View view) {
+        Intent intent = new Intent(this, EmailPassActivity.class);
         startActivity(intent);
     }
 }

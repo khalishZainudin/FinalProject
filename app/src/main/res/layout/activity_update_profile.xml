@@ -14,11 +14,12 @@
         android:layout_height="200dp"
         android:layout_gravity="center"
         android:scaleType="centerCrop"
+        android:layout_marginTop="100dp"
         />
 
     <EditText
-
-        android:background="@drawable/buttonstyle"
+        style="@style/Widget.AppCompat.Button.Colored"
+        android:theme="@style/ThemeOverlay.MyDarkButton"
         android:padding="10dp"
         android:id="@+id/profUserName"
         android:layout_width="match_parent"
@@ -28,8 +29,8 @@
 
     <Button
         android:layout_marginTop="10dp"
-        android:background="@drawable/action_button_style"
-        android:textColor="#fff"
+        android:background="@color/transparent"
+        android:textColor="@color/colorPrimaryDark"
         android:id="@+id/doneBtn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

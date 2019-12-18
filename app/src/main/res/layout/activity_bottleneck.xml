@@ -6,4 +6,90 @@
     android:layout_height="match_parent"
     tools:context=".Bottleneck.BottleneckActivity">
 
+    <TextView
+        android:id="@+id/bottleTv"
+        android:layout_width="324dp"
+        android:layout_height="51dp"
+        android:layout_marginStart="71dp"
+        android:layout_marginTop="36dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="76dp"
+        android:text="Bottleneck Checker"
+        android:textColor="@color/colorPrimaryDark"
+        android:textSize="30sp"
+        app:layout_constraintBottom_toTopOf="@+id/cpuSpinner"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.49" />
+
+    <Spinner
+        android:id="@+id/cpuSpinner"
+        android:layout_width="200dp"
+        android:layout_height="55dp"
+        android:layout_marginStart="75dp"
+        android:layout_marginTop="72dp"
+        android:layout_marginEnd="19dp"
+        android:background="@color/colorAccent"
+        android:entries="@array/cpu_arrays"
+        android:prompt="@string/cpu_prompt"
+        android:spinnerMode="dropdown"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.359"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/bottleTv"
+        tools:visibility="visible" />
+
+    <Spinner
+        android:id="@+id/gpuSpinner"
+        android:layout_width="200dp"
+        android:layout_height="62dp"
+        android:layout_marginStart="75dp"
+        android:layout_marginTop="14dp"
+        android:layout_marginEnd="19dp"
+        android:layout_marginBottom="3dp"
+        android:background="@color/colorAccent"
+        android:entries="@array/gpu_arrays"
+        android:prompt="@string/gpu_prompt"
+        android:spinnerMode="dropdown"
+        app:layout_constraintBottom_toTopOf="@+id/ramSpinner"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.389"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cpuSpinner"
+        tools:visibility="visible" />
+
+    <TextView
+        android:id="@+id/resultTv"
+        android:layout_width="183dp"
+        android:layout_height="87dp"
+        android:layout_marginTop="52dp"
+        android:layout_marginEnd="108dp"
+        android:gravity="center"
+        android:hint="Result"
+        android:textColor="@color/colorPrimaryDark"
+        android:textColorHint="@color/grey_900"
+        android:textSize="30sp"
+        android:textStyle="italic"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ramSpinner" />
+
+    <Spinner
+        android:id="@+id/ramSpinner"
+        android:layout_width="200dp"
+        android:layout_height="59dp"
+        android:layout_marginStart="75dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="19dp"
+        android:background="@color/colorAccent"
+        android:entries="@array/ram_arrays"
+        android:prompt="@string/ram_prompt"
+        android:spinnerMode="dropdown"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/gpuSpinner"
+        tools:visibility="visible" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

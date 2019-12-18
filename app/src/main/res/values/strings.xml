@@ -107,4 +107,30 @@
         <item>2Tb</item>
     </string-array>
 
+
+    // bottleneck
+    <string name="cpu_prompt">Choose a CPU</string>
+    <string name="gpu_prompt">Choose a GPU</string>
+    <string name="ram_prompt">Choose a Ram</string>
+
+    <string-array name="cpu_arrays">
+        <item>Intel core I3 3240</item>
+        <item>Intel Core I7 3770k</item>
+        <item>Intel Core I9 7990</item>
+    </string-array>
+
+    <string-array name="gpu_arrays">
+        <item>NVIDIA GeForce 600 Series</item>
+        <item>NVIDIA RTX 2000 Series</item>
+        <item>NVIDIA Quadro</item>
+    </string-array>
+
+    <string-array name="ram_arrays">
+        <item>2</item>
+        <item>4</item>
+        <item>8</item>
+        <item>32</item>
+        <item>128</item>
+    </string-array>
+
 </resources>

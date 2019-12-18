@@ -26,7 +26,7 @@
                 android:layout_marginTop="50dp"
                 android:fontFamily="@font/merienda_one"
                 android:text="Welcome to PC Helper Main Menu"
-                android:textColor="@color/white"
+                android:textColor="@color/colorPrimaryDark"
                 android:textSize="20sp"
                 android:textStyle="bold|italic"
                 android:gravity="center"/>
@@ -65,7 +65,7 @@
                         android:background="#00FFFFFF"
                         android:onClick="goToForumPage"
                         android:text="Forum Page"
-                        android:textColor="@color/black"
+                        android:textColor="@color/colorPrimaryDark"
                         android:textSize="20sp"
                         android:textStyle="bold" />
                 </LinearLayout>
@@ -106,7 +106,7 @@
                         android:background="#00FFFFFF"
                         android:onClick="goToUpdateProfile"
                         android:text="Update Profile"
-                        android:textColor="@color/white"
+                        android:textColor="@color/colorPrimaryDark"
                         android:textSize="20sp"
                         android:textStyle="bold" />
                 </LinearLayout>
@@ -147,7 +147,7 @@
                         android:background="#00FFFFFF"
                         android:onClick="goToCompatible"
                         android:text="Compatibility"
-                        android:textColor="@color/black"
+                        android:textColor="@color/colorPrimaryDark"
                         android:textSize="20sp"
                         android:textStyle="bold" />
                 </LinearLayout>
@@ -177,6 +177,7 @@
                         android:layout_width="50dp"
                         android:layout_height="50dp"
                         android:layout_gravity="center_horizontal"
+                        android:onClick="goToBottleneck"
                         android:layout_marginTop="10dp"
                         android:layout_marginBottom="-5dp"
                         android:src="@drawable/ic_bottleneck" />
@@ -185,9 +186,9 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:background="#00FFFFFF"
-                        android:onClick="goToForumPage"
+                        android:onClick="goToBottleneck"
                         android:text="Bottleneck Calculator"
-                        android:textColor="@color/black"
+                        android:textColor="@color/colorPrimaryDark"
                         android:textSize="20sp"
                         android:textStyle="bold" />
                 </LinearLayout>
@@ -204,7 +205,7 @@
                 android:outlineAmbientShadowColor="@color/grey_800"
                 android:outlineProvider="none"
                 android:outlineSpotShadowColor="#000000"
-                app:cardBackgroundColor="@color/colorAccent"
+                app:cardBackgroundColor="@color/transparent"
                 app:cardCornerRadius="20dp"
                 android:layout_gravity="center_horizontal">
 
@@ -219,15 +220,16 @@
                         android:layout_gravity="center_horizontal"
                         android:layout_marginTop="10dp"
                         android:layout_marginBottom="-5dp"
+                        android:onClick="goToPSUCalculator"
                         android:src="@drawable/ic_psu_calculator" />
 
                     <Button
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:background="#00FFFFFF"
-                        android:onClick="goToForumPage"
+                        android:onClick="goToPSUCalculator"
                         android:text="PSU Calculator"
-                        android:textColor="@color/black"
+                        android:textColor="@color/colorPrimaryDark"
                         android:textSize="20sp"
                         android:textStyle="bold" />
                 </LinearLayout>
@@ -244,8 +246,9 @@
                 android:outlineAmbientShadowColor="@color/grey_800"
                 android:outlineProvider="none"
                 android:outlineSpotShadowColor="#000000"
-                app:cardBackgroundColor="@color/colorAccent"
+                app:cardBackgroundColor="@color/transparent"
                 app:cardCornerRadius="20dp"
+                android:layout_marginBottom="40dp"
                 android:layout_gravity="center_horizontal">
 
                 <LinearLayout
@@ -258,6 +261,7 @@
                         android:layout_height="30dp"
                         android:layout_gravity="center_horizontal"
                         android:layout_marginTop="10dp"
+                        android:onClick="goToLogin"
                         android:layout_marginBottom="-5dp"
                         android:src="@drawable/ic_home_page" />
 
@@ -265,9 +269,9 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:background="#00FFFFFF"
-                        android:onClick="goToForumPage"
+                        android:onClick="goToLogin"
                         android:text="Home Page"
-                        android:textColor="@color/black"
+                        android:textColor="@color/colorAccent"
                         android:textSize="20sp"
                         android:textStyle="bold" />
                 </LinearLayout>

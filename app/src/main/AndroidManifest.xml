@@ -15,7 +15,6 @@
         <activity android:name=".LoginPage.ResetPasswordActivity" />
         <activity android:name=".LoginPage.ResetPasswordActivity" />
         <activity android:name=".CompatibilityPage.CompatibleMainActivity" />
-        <activity android:name=".MainActivity" />
         <activity android:name=".LoginPage.UpdateProfileActivity" />
         <activity android:name=".ForumPage.AddForum" />
         <activity android:name=".ForumPage.ForumInterface" />
