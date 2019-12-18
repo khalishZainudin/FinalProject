@@ -9,12 +9,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Bottleneck.BottleneckActivity"></activity>
+        <activity android:name=".ShowProfile"></activity>
+        <activity android:name=".Bottleneck.BottleneckActivity" />
         <activity android:name=".PSUCalculatorPage.PSUCalculatorActivity" />
         <activity android:name=".LoginPage.ResetPasswordActivity" />
-        android:theme="@style/AppTheme"
-        android:largeHeap="true">
-        <activity android:name=".LoginPage.ResetPasswordActivity"></activity>
+        <activity android:name=".LoginPage.ResetPasswordActivity" />
         <activity android:name=".CompatibilityPage.CompatibleMainActivity" />
         <activity android:name=".MainActivity" />
         <activity android:name=".LoginPage.UpdateProfileActivity" />
